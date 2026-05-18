@@ -34,11 +34,7 @@ button{font-family:var(--ff-body);cursor:pointer}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg3)}
 ::-webkit-scrollbar-thumb{background:var(--blue)}
-
-/* ── SCROLL PROGRESS BAR ── */
 #scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0%;z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0;box-shadow:0 0 8px rgba(58,127,255,.6)}
-
-/* ── FLOATING WHATSAPP ── */
 .fab-wa{position:fixed;bottom:2rem;right:2rem;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
 .fab-wa-btn{width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;border:none;transition:transform .3s,box-shadow .3s;animation:waPulse 3s ease-in-out infinite}
 .fab-wa-btn:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.55);animation:none}
@@ -46,37 +42,16 @@ button{font-family:var(--ff-body);cursor:pointer}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.08)}}
 .fab-wa-tooltip{background:var(--dark);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.08em;padding:.45rem .9rem;white-space:nowrap;opacity:0;transform:translateX(8px);transition:all .3s;pointer-events:none}
 .fab-wa:hover .fab-wa-tooltip{opacity:1;transform:translateX(0)}
-
-/* ── BACK TO TOP ── */
 #back-top{position:fixed;bottom:2rem;left:2rem;z-index:800;width:44px;height:44px;background:var(--dark2);border:1px solid var(--border);color:var(--blue2);font-size:1.1rem;display:none;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)}
 #back-top.show{display:flex}
 #back-top:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
-
-/* ── IMAGE FALLBACK PLACEHOLDER ── */
 .img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark2) 0%,var(--dark) 100%);position:absolute;inset:0}
 .img-placeholder svg{width:36px;height:36px;opacity:.25;fill:none;stroke:var(--blue2);stroke-width:1.5}
-
-/* ── IMG SKELETON SHIMMER ── */
 .svc-img, .prod-img, .modal-img, .why-img-wrap{position:relative}
-.svc-img img,.prod-img img,.modal-img img,.why-img-wrap img{
-  transition:all .6s;
-  background:var(--bg3);
-}
-/* Shimmer while loading */
+.svc-img img,.prod-img img,.modal-img img,.why-img-wrap img{transition:all .6s;background:var(--bg3);}
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
-
-/* ── CARD TILT (CSS vars updated by JS) ── */
-.svc-card,.prod-card{
-  --rx:0deg; --ry:0deg;
-  transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));
-  transition:transform .15s ease, background .4s;
-  will-change:transform;
-}
-.svc-card:hover,.prod-card:hover{
-  transition:transform .05s ease, background .4s;
-}
-
-/* ── UTILS ── */
+.svc-card,.prod-card{--rx:0deg; --ry:0deg;transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .15s ease, background .4s;will-change:transform;}
+.svc-card:hover,.prod-card:hover{transition:transform .05s ease, background .4s;}
 .label{font-size:.72rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--blue);margin-bottom:.8rem;display:block}
 .h-display{font-family:var(--ff-head);font-size:clamp(2.4rem,6vw,5rem);line-height:.93;letter-spacing:.03em;color:var(--text)}
 .h-display span{color:var(--blue)}
@@ -88,8 +63,6 @@ button{font-family:var(--ff-body);cursor:pointer}
 .fade-up.vis{opacity:1;transform:translateY(0)}
 .fade-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
 .fade-left.vis{opacity:1;transform:translateX(0)}
-
-/* ── NAVBAR ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.5rem 4rem;transition:all .4s}
 nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding:1rem 4rem;border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(58,127,255,.07)}
 .nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:2rem}
@@ -126,8 +99,6 @@ nav.scrolled .burger span{background:var(--text)}
 .mobile-menu{display:none;position:fixed;inset:0;background:var(--bg2);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
 .mobile-menu.open{display:flex;animation:fadeInBg .3s ease}
 .mobile-menu a{font-size:1.4rem;font-family:var(--ff-head);letter-spacing:.1em;color:var(--text);cursor:pointer}
-
-/* ── HERO ── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
 .hero-bg-img{position:absolute;inset:0}
 .hero-bg-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.55)}
@@ -135,16 +106,8 @@ nav.scrolled .burger span{background:var(--text)}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(58,127,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(58,127,255,.06) 1px,transparent 1px);background-size:60px 60px}
 .hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(58,127,255,.18) 0%,transparent 70%);animation:pulse 7s ease-in-out infinite;pointer-events:none}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.1);opacity:1}}
-
-/* ── HERO SPARKS ── */
 .spark{position:absolute;pointer-events:none;animation:sparkFloat linear infinite;opacity:0}
-@keyframes sparkFloat{
-  0%{opacity:0;transform:translateY(0) scale(0)}
-  10%{opacity:.7}
-  90%{opacity:.2}
-  100%{opacity:0;transform:translateY(-120px) scale(1.5)}
-}
-
+@keyframes sparkFloat{0%{opacity:0;transform:translateY(0) scale(0)}10%{opacity:.7}90%{opacity:.2}100%{opacity:0;transform:translateY(-120px) scale(1.5)}}
 .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:10rem 4rem 6rem;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);border:1px solid rgba(58,127,255,.35);padding:.45rem 1rem;margin-bottom:2rem;animation:fadeDown .9s ease both;background:rgba(58,127,255,.06)}
 .badge-dot{width:6px;height:6px;background:var(--blue2);border-radius:50%;animation:blink 2s ease infinite;flex-shrink:0}
@@ -171,8 +134,6 @@ nav.scrolled .burger span{background:var(--text)}
 .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--blue2),transparent);animation:scrollAnim 2s ease infinite}
 @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .scroll-hint span{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,242,250,.4)}
-
-/* ── SERVICES ── */
 .services{background:var(--bg2);padding:8rem 4rem;position:relative;overflow:hidden}
 .services::before{content:'ZERBITZUAK';position:absolute;top:1rem;right:-2rem;font-family:var(--ff-head);font-size:11rem;color:rgba(58,127,255,.04);white-space:nowrap;pointer-events:none}
 .svc-header{max-width:1400px;margin:0 auto 4rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
@@ -198,8 +159,6 @@ nav.scrolled .burger span{background:var(--text)}
 .svc-card:hover .svc-more{opacity:1;transform:translateX(0)}
 .svc-bar{position:absolute;bottom:0;left:0;height:2px;width:0;background:var(--blue);transition:width .4s}
 .svc-card:hover .svc-bar{width:100%}
-
-/* ── MODAL ── */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(26,29,46,.72);backdrop-filter:blur(10px);z-index:1000;align-items:center;justify-content:center;padding:2rem}
 .modal-bg.open{display:flex;animation:fadeInBg .3s ease}
 @keyframes fadeInBg{from{opacity:0}to{opacity:1}}
@@ -219,8 +178,6 @@ nav.scrolled .burger span{background:var(--text)}
 .modal-bullets li{display:flex;align-items:center;gap:.7rem;font-size:.88rem;color:var(--text2)}
 .bullet-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;flex-shrink:0}
 .modal-cta{width:100%;padding:1rem;clip-path:none;text-align:center}
-
-/* ── CATALOG ── */
 .catalog{background:var(--bg);padding:8rem 4rem;position:relative}
 .catalog::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
 .cat-inner{max-width:1400px;margin:0 auto}
@@ -244,8 +201,6 @@ nav.scrolled .burger span{background:var(--text)}
 .prod-desc{font-size:.8rem;line-height:1.6;color:var(--text2);font-weight:300;margin-bottom:.9rem}
 .prod-btn{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;opacity:0;transform:translateX(-8px);transition:all .3s;font-family:var(--ff-body)}
 .prod-card:hover .prod-btn{opacity:1;transform:translateX(0)}
-
-/* ── WHY US ── */
 .whyus{background:var(--bg2);padding:8rem 4rem;position:relative}
 .whyus::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(58,127,255,.18),transparent)}
 .why-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
@@ -264,8 +219,6 @@ nav.scrolled .burger span{background:var(--text)}
 .reason:hover .reason-num{color:var(--blue)}
 .reason-title{font-size:.98rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
 .reason-desc{font-size:.85rem;line-height:1.65;color:var(--text2);font-weight:300}
-
-/* ── LOCATION ── */
 .location{background:var(--bg);padding:8rem 4rem;position:relative}
 .location::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(58,127,255,.18),transparent)}
 .loc-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;min-height:520px}
@@ -281,8 +234,6 @@ nav.scrolled .burger span{background:var(--text)}
 .loc-map{height:520px;border:1px solid var(--border);position:relative;overflow:hidden}
 .loc-map iframe{width:100%;height:100%;border:0}
 .map-corner{position:absolute;top:0;left:0;width:38px;height:38px;border-top:2px solid var(--blue);border-left:2px solid var(--blue);pointer-events:none}
-
-/* ── CONTACT ── */
 .contact{background:var(--bg2);padding:8rem 4rem;position:relative}
 .contact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(58,127,255,.18),transparent)}
 .con-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:6rem;align-items:start}
@@ -309,8 +260,6 @@ nav.scrolled .burger span{background:var(--text)}
 .success-icon-box svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .form-success h3{font-family:var(--ff-head);font-size:2rem;color:var(--blue)}
 .form-success p{color:var(--text2);font-size:.93rem}
-
-/* ── FOOTER ── */
 footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 .footer-top{max-width:1400px;margin:0 auto;padding:5rem 4rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}
 .footer-logo{display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem}
@@ -325,60 +274,16 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 .footer-col ul li a{color:rgba(240,242,250,.38);transition:color .3s;cursor:pointer}
 .footer-col ul li:hover,.footer-col ul li a:hover{color:#f0f2fa}
 .footer-bottom{max-width:1400px;margin:0 auto;padding:1.4rem 4rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:rgba(240,242,250,.28);letter-spacing:.05em}
-
-/* ── TOOLTIP on hover cards ── */
-.svc-card::after{
-  content: attr(data-tooltip);
-  position:absolute;
-  top:.75rem; right:.75rem;
-  font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--blue2);background:rgba(26,29,46,.85);
-  padding:.22rem .55rem;
-  opacity:0;transform:translateY(-6px);
-  transition:all .3s;pointer-events:none;
-}
+.svc-card::after{content: attr(data-tooltip);position:absolute;top:.75rem; right:.75rem;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);background:rgba(26,29,46,.85);padding:.22rem .55rem;opacity:0;transform:translateY(-6px);transition:all .3s;pointer-events:none;}
 .svc-card:hover::after{opacity:1;transform:translateY(0)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .svc-grid{grid-template-columns:repeat(2,1fr)}
-  .cat-grid{grid-template-columns:repeat(3,1fr)}
-  .why-inner,.loc-inner,.con-inner{grid-template-columns:1fr;gap:3rem}
-  .why-img-wrap img{height:300px}
-  .loc-map{height:350px}
-  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
-}
-@media(max-width:768px){
-  nav,nav.scrolled{padding:1.2rem 1.5rem}
-  .nav-links,.nav-right{display:none}
-  .burger{display:flex}
-  .hero-content{padding:8rem 1.5rem 5rem}
-  .hero-btns{flex-direction:column;align-items:flex-start;gap:1rem}
-  .hero-stats{gap:2rem}
-  .services,.catalog,.whyus,.location,.contact{padding:5rem 1.5rem}
-  .svc-header{grid-template-columns:1fr}
-  .svc-grid{grid-template-columns:1fr}
-  .cat-grid{grid-template-columns:repeat(2,1fr)}
-  .form-row{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr;padding:3rem 1.5rem 2rem}
-  .footer-bottom{padding:1.2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
-  .fab-wa{bottom:1.2rem;right:1.2rem}
-  #back-top{bottom:1.2rem;left:1.2rem}
-}
+@media(max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}.cat-grid{grid-template-columns:repeat(3,1fr)}.why-inner,.loc-inner,.con-inner{grid-template-columns:1fr;gap:3rem}.why-img-wrap img{height:300px}.loc-map{height:350px}.footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}}
+@media(max-width:768px){nav,nav.scrolled{padding:1.2rem 1.5rem}.nav-links,.nav-right{display:none}.burger{display:flex}.hero-content{padding:8rem 1.5rem 5rem}.hero-btns{flex-direction:column;align-items:flex-start;gap:1rem}.hero-stats{gap:2rem}.services,.catalog,.whyus,.location,.contact{padding:5rem 1.5rem}.svc-header{grid-template-columns:1fr}.svc-grid{grid-template-columns:1fr}.cat-grid{grid-template-columns:repeat(2,1fr)}.form-row{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr;padding:3rem 1.5rem 2rem}.footer-bottom{padding:1.2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}.fab-wa{bottom:1.2rem;right:1.2rem}#back-top{bottom:1.2rem;left:1.2rem}}
 @media(max-width:480px){.cat-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
-
-<!-- SVG BOLT (reutilizable) -->
-<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
-  <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
-</svg>
-
-<!-- NAVBAR -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol></svg>
 <nav id="navbar">
   <div class="nav-inner">
     <div class="nav-logo">
@@ -404,8 +309,6 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a onclick="goSection('servicios');toggleMenu()" data-i18n="nav_services">Servicios</a>
   <a onclick="goSection('catalogo');toggleMenu()" data-i18n="nav_catalog">Catálogo</a>
@@ -418,20 +321,13 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     <button class="lang-btn" onclick="setLang('eu')">EU</button>
   </div>
 </div>
-
-<!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-bg-img">
-    <img
-      src="https://picsum.photos/seed/electrician/1600/900"
-      alt="electricidad"
-      onerror="this.onerror=null;this.src='https://picsum.photos/seed/industrial/1600/900'"
-    />
+    <img src="https://loremflickr.com/1600/900/electrical,cables,wiring?lock=42" alt="electricidad" onerror="this.onerror=null;this.src='https://loremflickr.com/1600/900/electricity,industrial,power?lock=99'" />
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <!-- SPARKS generated by JS -->
   <div id="sparks-container"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="badge-dot"></span><span data-i18n="hero_badge">Desde 1999 — Bergara, Gipuzkoa</span></div>
@@ -453,8 +349,6 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
-
-<!-- SERVICES -->
 <section class="services" id="servicios">
   <div class="svc-header fade-up">
     <span class="label" data-i18n="svc_label">Lo que hacemos</span>
@@ -463,8 +357,6 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
   </div>
   <div class="svc-grid" id="svcGrid"></div>
 </section>
-
-<!-- CATALOG -->
 <section class="catalog" id="catalogo">
   <div class="cat-inner">
     <div class="cat-header fade-up">
@@ -476,27 +368,19 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     <div class="cat-grid" id="catGrid"></div>
   </div>
 </section>
-
-<!-- WHY US -->
 <section class="whyus" id="nosotros">
   <div class="why-inner">
     <div class="why-left fade-left">
       <span class="label" data-i18n="why_label">Por qué elegirnos</span>
       <h2 class="h-display" data-i18n-html="why_title">MÁS DE 25 AÑOS<br><span>A TU SERVICIO</span></h2>
       <div class="why-img-wrap">
-        <img
-          src="https://picsum.photos/seed/electricworker/800/600"
-          alt="Técnico eléctrico"
-          onerror="this.onerror=null;this.src='https://picsum.photos/seed/technician/800/600'"
-        />
+        <img src="https://loremflickr.com/800/600/electrician,technician,worker?lock=7" alt="Técnico eléctrico" onerror="this.onerror=null;this.src='https://loremflickr.com/800/600/electrical,technician?lock=8'" />
         <div class="why-badge"><div class="why-badge-num">1999</div><div class="why-badge-txt" data-i18n="why_badge">Fundada en Bergara</div></div>
       </div>
     </div>
     <div class="why-right fade-up" id="reasonsList"></div>
   </div>
 </section>
-
-<!-- LOCATION -->
 <section class="location" id="ubicacion">
   <div class="loc-inner">
     <div class="loc-info fade-left">
@@ -528,8 +412,6 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     </div>
   </div>
 </section>
-
-<!-- CONTACT -->
 <section class="contact" id="contacto">
   <div class="con-inner">
     <div class="con-left fade-left">
@@ -567,8 +449,6 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
@@ -604,8 +484,6 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     <span>Bergara · Gipuzkoa · Euskadi</span>
   </div>
 </footer>
-
-<!-- SERVICE MODAL -->
 <div class="modal-bg" id="modal" onclick="closeModal(event)">
   <div class="modal">
     <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
@@ -623,22 +501,14 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     </div>
   </div>
 </div>
-
-<!-- FLOATING WHATSAPP -->
 <div class="fab-wa">
   <div class="fab-wa-tooltip" id="waTooltip">WhatsApp</div>
   <a href="https://wa.me/34943761994" target="_blank" class="fab-wa-btn" title="WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.553 4.12 1.523 5.854L0 24l6.293-1.5A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.959 0-3.809-.5-5.432-1.378l-.39-.22-4.02.959.976-3.928-.254-.404A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
   </a>
 </div>
-
-<!-- BACK TO TOP -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
-
 <script>
-/* ─────────────────────────────────────────────
-   SVG ICONS
-───────────────────────────────────────────── */
 const ICONS = {
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>',
   factory: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8l6-4v4l6-4v4l6-4v16H2z"/><line x1="6" y1="14" x2="6" y2="14"/><line x1="10" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="14" y2="14"/></svg>',
@@ -648,9 +518,6 @@ const ICONS = {
   droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>',
 }
 
-/* ─────────────────────────────────────────────
-   TRANSLATIONS
-───────────────────────────────────────────── */
 const T = {
   es: {
     nav_services:'Servicios', nav_catalog:'Catálogo', nav_about:'Nosotros', nav_location:'Ubicación', nav_contact:'Contacto', nav_cta:'Pedir Presupuesto',
@@ -714,20 +581,14 @@ const T = {
   }
 }
 
-/* ─────────────────────────────────────────────
-   IMAGE HELPER — picsum.photos NEVER fails
-   seed format: picsum.photos/seed/{word}/{w}/{h}
-───────────────────────────────────────────── */
-function picsrc(seed, w, h) {
-  return `https://picsum.photos/seed/${seed}/${w}/${h}`;
+// ── IMAGE HELPER: loremflickr returns keyword-relevant photos ──
+function loremimg(keywords, w, h, lock) {
+  return 'https://loremflickr.com/' + w + '/' + h + '/' + keywords + '?lock=' + lock;
 }
 
-/* ─────────────────────────────────────────────
-   SERVICES DATA  — reliable picsum images
-───────────────────────────────────────────── */
 const SERVICES = [
   { iconKey:'home',
-    img: picsrc('residence77', 600, 400),
+    img: loremimg('electrical,home,installation,socket', 600, 400, 1),
     title_es:'Instalaciones Residenciales', title_eu:'Etxebizitza Instalazioak',
     desc_es:'Instalación eléctrica completa para viviendas, reformas y ampliaciones. Certificación y legalización incluidas.',
     desc_eu:'Etxebizitzen instalazio elektriko osoa, erreformak eta zabalkuntza. Ziurtagiria eta legalizazioa barne.',
@@ -737,7 +598,7 @@ const SERVICES = [
     bullets_es:['Cuadros eléctricos y protecciones','Circuitos de alumbrado y fuerza','Toma a tierra y equipotencialidad','Boletín eléctrico y legalización','Puntos de recarga para vehículo eléctrico'],
     bullets_eu:['Armairu elektrikoak eta babesak','Argiztapen eta indar-zirkuituak','Lurra hartzea eta ekipotentzialtasuna','Boletin elektrikoa eta legalizazioa','Ibilgailu elektrikorako karga-puntuak'] },
   { iconKey:'factory',
-    img: picsrc('industrial44', 600, 400),
+    img: loremimg('industrial,factory,electrical,panel', 600, 400, 2),
     title_es:'Instalaciones Industriales', title_eu:'Industria Instalazioak',
     desc_es:'Proyectos eléctricos para naves industriales, maquinaria, cuadros de mando y sistemas de potencia.',
     desc_eu:'Proiektu elektrikoak industria-nabeentzat, makinentzat, aginte-armairuetarako eta potentzia-sistementzat.',
@@ -747,7 +608,7 @@ const SERVICES = [
     bullets_es:['Cuadros de distribución y mando','Líneas de fuerza para maquinaria','Automatización de procesos industriales','Alumbrado industrial LED','Puesta a tierra y protección de equipos'],
     bullets_eu:['Banaketa eta aginte-armairuak','Makinariarako indar-lerroak','Industria-prozesuen automatizazioa','Industria LED argiztapena','Lurra hartzea eta ekipoen babesa'] },
   { iconKey:'wrench',
-    img: picsrc('maintenance33', 600, 400),
+    img: loremimg('maintenance,repair,tools,electrical', 600, 400, 3),
     title_es:'Mantenimiento y Averías', title_eu:'Mantentze-lanak eta Matxurak',
     desc_es:'Servicio de mantenimiento preventivo y correctivo. Diagnóstico y reparación de todo tipo de averías eléctricas.',
     desc_eu:'Mantentze preventibo eta zuzentzaile zerbitzua. Edozein matxura elektrikoren diagnostikoa eta konponketa.',
@@ -757,7 +618,7 @@ const SERVICES = [
     bullets_es:['Mantenimiento preventivo programado','Atención urgente a averías','Termografía y análisis de redes','Revisiones reglamentarias','Informes técnicos detallados'],
     bullets_eu:['Mantentze prebentzibo programatua','Matxuren arreta urgentea','Termografia eta sare-analisia','Arauzko errebisioak','Txosten tekniko zehatzak'] },
   { iconKey:'cpu',
-    img: picsrc('smarthome55', 600, 400),
+    img: loremimg('smart,home,automation,technology', 600, 400, 4),
     title_es:'Domótica y Automatización', title_eu:'Domotika eta Automatizazioa',
     desc_es:'Sistemas inteligentes de control para el hogar y la industria. Ahorro energético y confort con tecnología avanzada.',
     desc_eu:'Etxerako eta industriarako kontrol-sistema adimentsuak. Energia-aurrezpena eta erosotasuna teknologia aurreratuarekin.',
@@ -767,7 +628,7 @@ const SERVICES = [
     bullets_es:['Control de iluminación y climatización','Gestión de persianas y accesos','Sistemas de seguridad integrados','Monitorización energética en tiempo real','Integración con asistentes de voz'],
     bullets_eu:['Argiztapen eta klimatizazioaren kontrola','Pertsianen eta sarbideen kudeaketa','Segurtasun-sistema integratuak','Energia-monitorizazioa denbora errealean','Ahots-laguntzaileekin integrazioa'] },
   { iconKey:'bulb',
-    img: picsrc('lighting66', 600, 400),
+    img: loremimg('led,lighting,lamp,light', 600, 400, 5),
     title_es:'Iluminación LED', title_eu:'LED Argiztapena',
     desc_es:'Proyectos de iluminación eficiente para interior y exterior. Asesoramiento personalizado y montaje profesional.',
     desc_eu:'Barne eta kanpoko argiztapen eraginkor-proiektuak. Aholkularitza pertsonalizatua eta muntaia profesionala.',
@@ -777,7 +638,7 @@ const SERVICES = [
     bullets_es:['Estudio lumínico y cálculo de iluminancia','Sustitución de luminarias antiguas por LED','Iluminación decorativa y de acento','Alumbrado de emergencia homologado','Control DALI y regulación de luz'],
     bullets_eu:['Argi-azterketa eta iluminantzia kalkulua','Luminara zaharkituak LEDengatik ordezkatzea','Apaingarri argiztapena','Larrialdi-argiztapena homologatua','DALI kontrola eta argi-erregulazioa'] },
   { iconKey:'droplet',
-    img: picsrc('plumbing88', 600, 400),
+    img: loremimg('plumbing,pipes,heating,boiler', 600, 400, 6),
     title_es:'Fontanería y Calefacción', title_eu:'Iturgintzа eta Berogailua',
     desc_es:'Instalación y mantenimiento de sistemas de fontanería, suelo radiante, gas natural y calderas.',
     desc_eu:'Iturgintzа, zoru erradiatzailea, gas naturaleko eta galdaren sistemen instalazioa eta mantentzea.',
@@ -788,81 +649,78 @@ const SERVICES = [
     bullets_eu:['Zoru erradiatzailea eta berokuntzа zentrala','Gas eta kondentsazio-galdarrak','Aerotermiа eta bero-ponpa','Obra berri eta erreformetako iturgintzа','Mantentze-lanak eta urteko errebisioak'] },
 ]
 
-/* ─────────────────────────────────────────────
-   CATALOG — all picsum seeds
-───────────────────────────────────────────── */
 const PRODUCTS = [
   { cat_es:'Cableado', cat_eu:'Kableatzea',
     name_es:'Cable RZ1-K (AS)', name_eu:'RZ1-K (AS) Kablea',
     desc_es:'Cable flexible libre de halógenos. Resistente al fuego. Para instalaciones interiores.',
     desc_eu:'Halogeno gabeko kable malgua. Suari erresistentea. Barne-instalazioetarako.',
-    img: picsrc('cable01', 400, 300),
+    img: loremimg('cable,wire,electrical,coil', 400, 300, 10),
     badge_es:'Más vendido', badge_eu:'Gehien saltua' },
   { cat_es:'Cableado', cat_eu:'Kableatzea',
     name_es:'Tubo Corrugado Reforzado', name_eu:'Hodi Korrugatua Indartua',
     desc_es:'Tubo de protección para cableado empotrado en paredes y suelos. Alta resistencia.',
     desc_eu:'Hormetan eta zoruan sartutako kablerako babes-hodia. Erresistentzia handia.',
-    img: picsrc('conduit02', 400, 300),
+    img: loremimg('conduit,pipe,tube,plastic', 400, 300, 11),
     badge_es:null, badge_eu:null },
   { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak',
     name_es:'Cuadro de Distribución', name_eu:'Banaketa-Armairua',
     desc_es:'Armario metálico para protecciones en instalaciones industriales y terciarias.',
     desc_eu:'Metalezko armairua industria eta zerbitzu-instalazioetarako babesak gordetzeko.',
-    img: picsrc('electricpanel03', 400, 300),
+    img: loremimg('electrical,panel,switchboard,distribution', 400, 300, 12),
     badge_es:'Industrial', badge_eu:'Industriala' },
   { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak',
     name_es:'PIA / Interruptor Automático', name_eu:'PIA / Etengailu Automatikoa',
     desc_es:'Interruptor automático magnetotérmico para protección de circuitos.',
     desc_eu:'Etengailu automatiko magnetotermikoa zirkuituak babesteko.',
-    img: picsrc('breaker04', 400, 300),
+    img: loremimg('circuit,breaker,fuse,electrical', 400, 300, 13),
     badge_es:null, badge_eu:null },
   { cat_es:'Iluminación', cat_eu:'Argiztapena',
     name_es:'Panel LED 60x60cm', name_eu:'LED Panela 60x60cm',
     desc_es:'Luminaria empotrable alta eficiencia para oficinas y locales comerciales. 40W 4000K.',
     desc_eu:'Eraginkortasun handiko luminaria bulegoentzat. 40W 4000K.',
-    img: picsrc('ledpanel05', 400, 300),
+    img: loremimg('led,panel,ceiling,light,office', 400, 300, 14),
     badge_es:'Eficiencia A++', badge_eu:'A++ Eraginkortasuna' },
   { cat_es:'Iluminación', cat_eu:'Argiztapena',
     name_es:'Foco LED Downlight', name_eu:'LED Downlight Fokua',
     desc_es:'Foco empotrable LED regulable. Disponible en 3000K, 4000K y 6500K. 12W.',
     desc_eu:'LED foko erregulagarria. 3000K, 4000K eta 6500K eskuragarri. 12W.',
-    img: picsrc('spotlight06', 400, 300),
+    img: loremimg('led,spotlight,downlight,lamp', 400, 300, 15),
     badge_es:null, badge_eu:null },
   { cat_es:'Automatización', cat_eu:'Automatizazioa',
     name_es:'Interruptor Crepuscular', name_eu:'Ilunabarreko Etengailua',
     desc_es:'Control automático de iluminación exterior según nivel de luz ambiente.',
     desc_eu:'Kanpoko argiztapenaren kontrol automatikoa inguruko argiaren arabera.',
-    img: picsrc('sensor07', 400, 300),
+    img: loremimg('sensor,photocell,outdoor,dusk', 400, 300, 16),
     badge_es:null, badge_eu:null },
   { cat_es:'Automatización', cat_eu:'Automatizazioa',
     name_es:'Detector de Movimiento PIR', name_eu:'PIR Mugimendua Detektagailua',
     desc_es:'Detector de presencia para control automático de luminarias y seguridad.',
     desc_eu:'Presentzia-detektagailua luminaren eta segurtasunaren kontrol automatikorako.',
-    img: picsrc('motiondetect08', 400, 300),
+    img: loremimg('motion,sensor,security,detector', 400, 300, 17),
     badge_es:null, badge_eu:null },
   { cat_es:'Protección', cat_eu:'Babesa',
     name_es:'Diferencial 40A 30mA', name_eu:'Diferentziala 40A 30mA',
     desc_es:'Interruptor diferencial para protección contra contactos indirectos y corrientes de fuga.',
     desc_eu:'Zeharkako kontaktuen eta ihes-korrienteen aurkako babeserako etengailua.',
-    img: picsrc('differential09', 400, 300),
+    img: loremimg('circuit,breaker,safety,electrical,fuse', 400, 300, 18),
     badge_es:'Seguridad', badge_eu:'Segurtasuna' },
   { cat_es:'Protección', cat_eu:'Babesa',
     name_es:'IGA / Interruptor General', name_eu:'IGA / Etengailu Orokorra',
     desc_es:'Interruptor general de mando y protección para cuadros eléctricos.',
     desc_eu:'Aginte eta babes etengailu orokorra armairu elektrikoetarako.',
-    img: picsrc('mainswitch10', 400, 300),
+    img: loremimg('electrical,switch,power,fuse,breaker', 400, 300, 19),
     badge_es:null, badge_eu:null },
   { cat_es:'Cableado', cat_eu:'Kableatzea',
     name_es:'Cable Manguera Flexible', name_eu:'Manguera Kable Malgua',
     desc_es:'Cable unipolar flexible con aislamiento PVC. Ideal para instalaciones en tubo.',
     desc_eu:'PVC isolamendua duen kable unipolar malgua. Hodietan egokia.',
-    img: picsrc('flexcable11', 400, 300),
+    img: loremimg('wire,cable,flexible,conductor', 400, 300, 20),
     badge_es:null, badge_eu:null },
   { cat_es:'Iluminación', cat_eu:'Argiztapena',
     name_es:'Tira LED RGB', name_eu:'LED RGB Zerrenda',
     desc_es:'Tira LED de colores programables para decoración y ambientación. IP65.',
     desc_eu:'Kolore programagarrien LED zerrenda apainketarako. IP65.',
-    img: picsrc('ledstrip12', 400, 300),
+    img: loremimg('led,strip,colorful,rgb,neon', 400, 300, 21),
     badge_es:'Decoración', badge_eu:'Apaingarria' },
 ]
 
@@ -885,15 +743,9 @@ const REASONS = {
   ]
 }
 
-/* ─────────────────────────────────────────────
-   STATE
-───────────────────────────────────────────── */
 let lang = 'es'
 let activeCat = 0
 
-/* ─────────────────────────────────────────────
-   INIT
-───────────────────────────────────────────── */
 document.getElementById('year').textContent = new Date().getFullYear()
 renderServices()
 renderReasons()
@@ -907,9 +759,6 @@ initBackTop()
 initTilt()
 initSparks()
 
-/* ─────────────────────────────────────────────
-   NAVIGATION
-───────────────────────────────────────────── */
 function goSection(id) {
   const el = document.getElementById(id)
   if (el) {
@@ -919,9 +768,6 @@ function goSection(id) {
   }
 }
 
-/* ─────────────────────────────────────────────
-   LANG SWITCH
-───────────────────────────────────────────── */
 function setLang(l) {
   lang = l
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === l.toUpperCase()))
@@ -938,9 +784,6 @@ function setLang(l) {
 
 function t(k) { return T[lang][k] || k }
 
-/* ─────────────────────────────────────────────
-   NAVBAR
-───────────────────────────────────────────── */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60)
 })
@@ -950,9 +793,6 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open')
 }
 
-/* ─────────────────────────────────────────────
-   SCROLL PROGRESS BAR
-───────────────────────────────────────────── */
 function initScrollProgress() {
   const bar = document.getElementById('scroll-progress')
   window.addEventListener('scroll', () => {
@@ -961,9 +801,6 @@ function initScrollProgress() {
   }, { passive: true })
 }
 
-/* ─────────────────────────────────────────────
-   BACK TO TOP
-───────────────────────────────────────────── */
 function initBackTop() {
   const btn = document.getElementById('back-top')
   window.addEventListener('scroll', () => {
@@ -971,9 +808,6 @@ function initBackTop() {
   }, { passive: true })
 }
 
-/* ─────────────────────────────────────────────
-   CARD TILT EFFECT
-───────────────────────────────────────────── */
 function initTilt() {
   function addTilt(selector) {
     document.addEventListener('mousemove', (e) => {
@@ -1000,9 +834,6 @@ function initTilt() {
   addTilt('.prod-card')
 }
 
-/* ─────────────────────────────────────────────
-   HERO SPARKS
-───────────────────────────────────────────── */
 function initSparks() {
   const container = document.getElementById('sparks-container')
   if (!container) return
@@ -1010,34 +841,17 @@ function initSparks() {
     const spark = document.createElement('div')
     spark.className = 'spark'
     const size = Math.random() * 4 + 2
-    spark.style.cssText = `
-      width:${size}px;
-      height:${size}px;
-      background:${Math.random() > .5 ? '#6aa0ff' : '#3a7fff'};
-      border-radius:50%;
-      left:${Math.random()*100}%;
-      bottom:${Math.random()*40}%;
-      animation-duration:${Math.random()*4+3}s;
-      animation-delay:${Math.random()*5}s;
-    `
+    spark.style.cssText = 'width:'+size+'px;height:'+size+'px;background:'+(Math.random() > .5 ? '#6aa0ff' : '#3a7fff')+';border-radius:50%;left:'+Math.random()*100+'%;bottom:'+Math.random()*40+'%;animation-duration:'+(Math.random()*4+3)+'s;animation-delay:'+Math.random()*5+'s;'
     container.appendChild(spark)
   }
 }
 
-/* ─────────────────────────────────────────────
-   SERVICES
-───────────────────────────────────────────── */
 function renderServices() {
   const grid = document.getElementById('svcGrid')
   grid.innerHTML = SERVICES.map((s,i) => `
     <div class="svc-card" onclick="openModal(${i})">
       <div class="svc-img">
-        <img
-          src="${s.img}"
-          alt="${lang==='es'?s.title_es:s.title_eu}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='${picsrc('fallback'+i, 600, 400)}'"
-        />
+        <img src="${s.img}" alt="${lang==='es'?s.title_es:s.title_eu}" loading="lazy" onerror="this.onerror=null;this.src='https://loremflickr.com/600/400/electrical,installation?lock=${i+30}'" />
         <div class="svc-img-ov"></div>
         <div class="svc-icon-box">${ICONS[s.iconKey]}</div>
       </div>
@@ -1051,14 +865,11 @@ function renderServices() {
     </div>`).join('')
 }
 
-/* ─────────────────────────────────────────────
-   MODAL
-───────────────────────────────────────────── */
 function openModal(i) {
   const s = SERVICES[i]
   const imgEl = document.getElementById('modalImg')
   imgEl.src = s.img
-  imgEl.onerror = function() { this.onerror=null; this.src = picsrc('modalfallback'+i, 750, 300) }
+  imgEl.onerror = function() { this.onerror=null; this.src = 'https://loremflickr.com/750/300/electrical,installation?lock='+(i+70) }
   document.getElementById('modalIconBox').innerHTML = ICONS[s.iconKey]
   document.getElementById('modalTags').textContent = (lang==='es'?s.tags_es:s.tags_eu).join(' · ')
   document.getElementById('modalTitle').textContent = lang==='es'?s.title_es:s.title_eu
@@ -1082,9 +893,6 @@ function closeModalGoContact() {
   setTimeout(()=>goSection('contacto'), 200)
 }
 
-/* ─────────────────────────────────────────────
-   CATALOG
-───────────────────────────────────────────── */
 function renderCatalog() {
   const cats = t('cat_cats')
   const filtersEl = document.getElementById('catFilters')
@@ -1104,12 +912,7 @@ function renderProducts() {
     const badge = lang==='es'?p.badge_es:p.badge_eu
     return `<div class="prod-card">
       <div class="prod-img">
-        <img
-          src="${p.img}"
-          alt="${name}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='${picsrc('prodfallback'+idx, 400, 300)}'"
-        />
+        <img src="${p.img}" alt="${name}" loading="lazy" onerror="this.onerror=null;this.src='https://loremflickr.com/400/300/electrical,component?lock=${idx+50}'" />
         ${badge?`<span class="prod-badge">${badge}</span>`:''}
         <span class="prod-cat">${cat}</span>
       </div>
@@ -1122,9 +925,6 @@ function renderProducts() {
   }).join('')
 }
 
-/* ─────────────────────────────────────────────
-   REASONS
-───────────────────────────────────────────── */
 function renderReasons() {
   document.getElementById('reasonsList').innerHTML = REASONS[lang].map(r=>`
     <div class="reason">
@@ -1133,18 +933,12 @@ function renderReasons() {
     </div>`).join('')
 }
 
-/* ─────────────────────────────────────────────
-   FOOTER
-───────────────────────────────────────────── */
 function renderFooter() {
   document.getElementById('footerServices').innerHTML = t('services_list').map(s=>`<li>${s}</li>`).join('')
   const ids = ['servicios','catalogo','nosotros','ubicacion','contacto']
   document.getElementById('footerNav').innerHTML = t('nav_list').map((l,i)=>`<li><a onclick="goSection('${ids[i]}')">${l}</a></li>`).join('')
 }
 
-/* ─────────────────────────────────────────────
-   FORM
-───────────────────────────────────────────── */
 function updateServiceSelect() {
   const sel = document.getElementById('serviceSelect')
   if(!sel) return
@@ -1183,9 +977,6 @@ function resetForm() {
   initForm()
 }
 
-/* ─────────────────────────────────────────────
-   COUNTERS
-───────────────────────────────────────────── */
 function initCounters() {
   const targets = [25, 500, 100], suffixes = ['+','+','%']
   const observer = new IntersectionObserver(entries => {
@@ -1205,9 +996,6 @@ function initCounters() {
   if (cnt0) observer.observe(cnt0)
 }
 
-/* ─────────────────────────────────────────────
-   SCROLL ANIMATIONS
-───────────────────────────────────────────── */
 function initScroll() {
   const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') }), {threshold:.1})
   document.querySelectorAll('.fade-up,.fade-left').forEach(el => obs.observe(el))
