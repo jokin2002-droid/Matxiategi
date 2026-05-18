@@ -52,41 +52,51 @@ button{font-family:var(--ff-body);cursor:pointer}
 nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.5rem 4rem;transition:all .4s}
 nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding:1rem 4rem;border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(58,127,255,.07)}
 .nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:2rem}
-.nav-logo{display:flex;align-items:baseline;gap:.5rem;flex-shrink:0}
-.nav-logo .bolt{font-size:1.1rem;color:var(--blue);font-family:var(--ff-head);letter-spacing:.05em}
-.nav-logo .name{font-family:var(--ff-head);font-size:1.5rem;letter-spacing:.08em;color:var(--text)}
+.nav-logo{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.nav-logo .bolt-icon{width:22px;height:22px;flex-shrink:0}
+.nav-logo .bolt-icon path{fill:var(--blue2)}
+.nav-logo .name{font-family:var(--ff-head);font-size:1.5rem;letter-spacing:.08em;color:var(--white)}
+nav.scrolled .nav-logo .name{color:var(--text)}
 .nav-logo .sl{font-size:.65rem;font-weight:700;color:var(--blue);letter-spacing:.12em}
 .nav-links{display:flex;list-style:none;gap:2.2rem;margin-left:auto}
-.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);transition:color .3s;position:relative;cursor:pointer}
+.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,242,250,.75);transition:color .3s;position:relative;cursor:pointer}
+nav.scrolled .nav-links a{color:var(--text2)}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--blue);transition:width .3s}
-.nav-links a:hover{color:var(--text)}
+.nav-links a:hover{color:var(--white)}
+nav.scrolled .nav-links a:hover{color:var(--text)}
 .nav-links a:hover::after{width:100%}
 .nav-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
-.lang-toggle{display:flex;align-items:center;gap:.35rem;border:1px solid var(--border);padding:.3rem .6rem;background:var(--white)}
-.lang-btn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--text3);background:none;border:none;padding:.1rem .2rem;cursor:pointer;transition:color .2s}
-.lang-btn.active{color:var(--blue)}
-.lang-sep{color:var(--border);font-size:.75rem}
+.lang-toggle{display:flex;align-items:center;gap:.35rem;border:1px solid rgba(255,255,255,.25);padding:.3rem .6rem;background:rgba(255,255,255,.08)}
+nav.scrolled .lang-toggle{border-color:var(--border);background:var(--white)}
+.lang-btn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:rgba(240,242,250,.55);background:none;border:none;padding:.1rem .2rem;cursor:pointer;transition:color .2s}
+.lang-btn.active{color:var(--blue2)}
+nav.scrolled .lang-btn{color:var(--text3)}
+nav.scrolled .lang-btn.active{color:var(--blue)}
+.lang-sep{color:rgba(255,255,255,.2);font-size:.75rem}
+nav.scrolled .lang-sep{color:var(--border)}
 .nav-cta{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--blue);padding:.65rem 1.3rem;border:none;cursor:pointer;transition:all .3s;white-space:nowrap}
 .nav-cta:hover{background:var(--blue2);transform:translateY(-2px)}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;margin-left:auto;z-index:901}
-.burger span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;transform-origin:center}
+.burger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s;transform-origin:center}
+nav.scrolled .burger span{background:var(--text)}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .mobile-menu{display:none;position:fixed;inset:0;background:var(--bg2);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
-.mobile-menu.open{display:flex}
+.mobile-menu.open{display:flex;animation:fadeInBg .3s ease}
 .mobile-menu a{font-size:1.4rem;font-family:var(--ff-head);letter-spacing:.1em;color:var(--text);cursor:pointer}
 
 /* ── HERO ── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
 .hero-bg-img{position:absolute;inset:0}
-.hero-bg-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(50%) brightness(.28)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(26,29,46,.97) 0%,rgba(26,29,46,.82) 50%,rgba(26,29,46,.35) 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(58,127,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(58,127,255,.05) 1px,transparent 1px);background-size:60px 60px}
-.hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(58,127,255,.12) 0%,transparent 70%);animation:pulse 7s ease-in-out infinite;pointer-events:none}
+.hero-bg-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.55)}
+/* Overlay much lighter than before */
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(18,22,42,.88) 0%,rgba(18,22,42,.65) 52%,rgba(18,22,42,.25) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(58,127,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(58,127,255,.06) 1px,transparent 1px);background-size:60px 60px}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(58,127,255,.18) 0%,transparent 70%);animation:pulse 7s ease-in-out infinite;pointer-events:none}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.1);opacity:1}}
 .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:10rem 4rem 6rem;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);border:1px solid rgba(58,127,255,.3);padding:.45rem 1rem;margin-bottom:2rem;animation:fadeDown .9s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);border:1px solid rgba(58,127,255,.35);padding:.45rem 1rem;margin-bottom:2rem;animation:fadeDown .9s ease both;background:rgba(58,127,255,.06)}
 .badge-dot{width:6px;height:6px;background:var(--blue2);border-radius:50%;animation:blink 2s ease infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 @keyframes fadeDown{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
@@ -95,22 +105,22 @@ nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding
 .hero-title .l2{display:block;color:var(--blue2);animation:slideUp .9s ease .35s both}
 .hero-title .l3{display:block;animation:slideUp .9s ease .5s both}
 @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.hero-desc{font-size:1rem;font-weight:300;line-height:1.75;color:rgba(240,242,250,.58);max-width:500px;margin-bottom:2.5rem;animation:fadeUp .9s ease .7s both}
+.hero-desc{font-size:1rem;font-weight:300;line-height:1.75;color:rgba(240,242,250,.72);max-width:500px;margin-bottom:2.5rem;animation:fadeUp .9s ease .7s both}
 .hero-btns{display:flex;gap:1.5rem;align-items:center;margin-bottom:4rem;animation:fadeUp .9s ease .9s both;flex-wrap:wrap}
-.hero-btns .btn-ghost{color:rgba(240,242,250,.8);border-color:rgba(240,242,250,.3)}
+.hero-btns .btn-ghost{color:rgba(240,242,250,.85);border-color:rgba(240,242,250,.4)}
 .hero-btns .btn-ghost:hover{color:var(--blue2);border-color:var(--blue2)}
 .hero-stats{display:flex;gap:3rem;animation:fadeUp .9s ease 1.1s both;flex-wrap:wrap}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .stat-num{font-family:var(--ff-head);font-size:2.8rem;color:var(--blue2);line-height:1}
-.stat-lbl{font-size:.72rem;font-weight:400;color:rgba(240,242,250,.45);letter-spacing:.08em;text-transform:uppercase;margin-top:.25rem}
+.stat-lbl{font-size:.72rem;font-weight:400;color:rgba(240,242,250,.5);letter-spacing:.08em;text-transform:uppercase;margin-top:.25rem}
 .hero-stat{position:relative;padding-left:1.5rem}
-.hero-stat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:55%;background:rgba(58,127,255,.3)}
+.hero-stat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:55%;background:rgba(58,127,255,.35)}
 .hero-stat:first-child{padding-left:0}
 .hero-stat:first-child::before{display:none}
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeUp 1s ease 1.5s both}
 .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--blue2),transparent);animation:scrollAnim 2s ease infinite}
 @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.scroll-hint span{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,242,250,.35)}
+.scroll-hint span{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,242,250,.4)}
 
 /* ── SERVICES ── */
 .services{background:var(--bg2);padding:8rem 4rem;position:relative;overflow:hidden}
@@ -173,7 +183,7 @@ nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bg4)}
 .prod-card{background:var(--bg2);overflow:hidden;cursor:pointer;transition:background .3s;position:relative}
 .prod-card:hover{background:var(--bg3)}
-.prod-img{height:175px;overflow:hidden;position:relative}
+.prod-img{height:175px;overflow:hidden;position:relative;background:var(--bg3)}
 .prod-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.85);transition:all .5s}
 .prod-card:hover .prod-img img{filter:grayscale(0%) brightness(1);transform:scale(1.06)}
 .prod-badge{position:absolute;top:.7rem;right:.7rem;background:var(--blue);color:var(--white);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .55rem}
@@ -244,7 +254,7 @@ nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:var(--bg2)}
 .form-group select option{background:var(--bg2);color:var(--text)}
 .form-submit{width:100%;padding:1rem;text-align:center;clip-path:none;margin-top:.4rem}
-.form-success{text-align:center;padding:4rem 2rem;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:1rem;background:var(--bg-dim)}
+.form-success{text-align:center;padding:4rem 2rem;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:1rem}
 .success-icon-box{width:56px;height:56px;background:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto}
 .success-icon-box svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .form-success h3{font-family:var(--ff-head);font-size:2rem;color:var(--blue)}
@@ -253,8 +263,10 @@ nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding
 /* ── FOOTER ── */
 footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 .footer-top{max-width:1400px;margin:0 auto;padding:5rem 4rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}
-.footer-logo{font-family:var(--ff-head);font-size:1.7rem;letter-spacing:.06em;margin-bottom:.9rem;color:#f0f2fa}
-.footer-sl{font-family:var(--ff-body);font-size:.7rem;font-weight:700;color:var(--blue2);letter-spacing:.15em;vertical-align:super}
+.footer-logo{display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem}
+.footer-logo-text{font-family:var(--ff-head);font-size:1.7rem;letter-spacing:.06em;color:#f0f2fa}
+.footer-logo .bolt-icon path{fill:var(--blue2)}
+.footer-sl{font-family:var(--ff-body);font-size:.7rem;font-weight:700;color:var(--blue2);letter-spacing:.15em}
 .footer-tagline{font-size:.86rem;line-height:1.7;color:rgba(240,242,250,.45);font-weight:300;margin-bottom:1.4rem;white-space:pre-line}
 .footer-cert{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue2);border:1px solid rgba(58,127,255,.3);padding:.32rem .7rem;display:inline-block}
 .footer-col h4{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);margin-bottom:1.2rem}
@@ -293,20 +305,25 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 </head>
 <body>
 
+<!-- SVG BOLT (reutilizable) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+</svg>
+
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
     <div class="nav-logo">
-      <span class="bolt">&#9889;</span>
+      <svg class="bolt-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       <span class="name">MATXIATEGI</span>
       <span class="sl">S.L.</span>
     </div>
     <ul class="nav-links">
-      <li><a onclick="scrollTo('servicios')" data-i18n="nav_services">Servicios</a></li>
-      <li><a onclick="scrollTo('catalogo')" data-i18n="nav_catalog">Catálogo</a></li>
-      <li><a onclick="scrollTo('nosotros')" data-i18n="nav_about">Nosotros</a></li>
-      <li><a onclick="scrollTo('ubicacion')" data-i18n="nav_location">Ubicación</a></li>
-      <li><a onclick="scrollTo('contacto')" data-i18n="nav_contact">Contacto</a></li>
+      <li><a onclick="goSection('servicios')" data-i18n="nav_services">Servicios</a></li>
+      <li><a onclick="goSection('catalogo')" data-i18n="nav_catalog">Catálogo</a></li>
+      <li><a onclick="goSection('nosotros')" data-i18n="nav_about">Nosotros</a></li>
+      <li><a onclick="goSection('ubicacion')" data-i18n="nav_location">Ubicación</a></li>
+      <li><a onclick="goSection('contacto')" data-i18n="nav_contact">Contacto</a></li>
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
@@ -314,7 +331,7 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
         <span class="lang-sep">|</span>
         <button class="lang-btn" onclick="setLang('eu')">EU</button>
       </div>
-      <button class="nav-cta btn-main" onclick="scrollTo('contacto')" data-i18n="nav_cta">Pedir Presupuesto</button>
+      <button class="nav-cta btn-main" onclick="goSection('contacto')" data-i18n="nav_cta">Pedir Presupuesto</button>
     </div>
     <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
@@ -322,11 +339,11 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a onclick="scrollTo('servicios');toggleMenu()" data-i18n="nav_services">Servicios</a>
-  <a onclick="scrollTo('catalogo');toggleMenu()" data-i18n="nav_catalog">Catálogo</a>
-  <a onclick="scrollTo('nosotros');toggleMenu()" data-i18n="nav_about">Nosotros</a>
-  <a onclick="scrollTo('ubicacion');toggleMenu()" data-i18n="nav_location">Ubicación</a>
-  <a onclick="scrollTo('contacto');toggleMenu()" data-i18n="nav_contact">Contacto</a>
+  <a onclick="goSection('servicios');toggleMenu()" data-i18n="nav_services">Servicios</a>
+  <a onclick="goSection('catalogo');toggleMenu()" data-i18n="nav_catalog">Catálogo</a>
+  <a onclick="goSection('nosotros');toggleMenu()" data-i18n="nav_about">Nosotros</a>
+  <a onclick="goSection('ubicacion');toggleMenu()" data-i18n="nav_location">Ubicación</a>
+  <a onclick="goSection('contacto');toggleMenu()" data-i18n="nav_contact">Contacto</a>
   <div class="lang-toggle" style="margin-top:1rem">
     <button class="lang-btn active" onclick="setLang('es')">ES</button>
     <span class="lang-sep">|</span>
@@ -336,7 +353,10 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <div class="hero-bg-img"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=80" alt="electricidad" /></div>
+  <div class="hero-bg-img">
+    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=80" alt="electricidad"
+         onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80'" />
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
@@ -349,8 +369,8 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     </h1>
     <p class="hero-desc" data-i18n="hero_desc">Instalaciones eléctricas residenciales e industriales, domótica, automatización y mantenimiento. Más de 25 años de confianza en Bergara y Gipuzkoa.</p>
     <div class="hero-btns">
-      <button class="btn-main" onclick="scrollTo('contacto')" data-i18n="hero_cta1">Solicitar Presupuesto</button>
-      <button class="btn-ghost" onclick="scrollTo('servicios')" data-i18n="hero_cta2">Ver Servicios →</button>
+      <button class="btn-main" onclick="goSection('contacto')" data-i18n="hero_cta1">Solicitar Presupuesto</button>
+      <button class="btn-ghost" onclick="goSection('servicios')" data-i18n="hero_cta2">Ver Servicios →</button>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="stat-num" id="cnt0">0</div><div class="stat-lbl" data-i18n="hero_stat1">Años de experiencia</div></div>
@@ -391,7 +411,8 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
       <span class="label" data-i18n="why_label">Por qué elegirnos</span>
       <h2 class="h-display" data-i18n-html="why_title">MÁS DE 25 AÑOS<br><span>A TU SERVICIO</span></h2>
       <div class="why-img-wrap">
-        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80" alt="Técnico eléctrico" />
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80" alt="Técnico eléctrico"
+             onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80'" />
         <div class="why-badge"><div class="why-badge-num">1999</div><div class="why-badge-txt" data-i18n="why_badge">Fundada en Bergara</div></div>
       </div>
     </div>
@@ -475,7 +496,11 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-logo">&#9889; MATXIATEGI <span class="footer-sl">S.L.</span></div>
+      <div class="footer-logo">
+        <svg class="bolt-icon" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span class="footer-logo-text">MATXIATEGI</span>
+        <span class="footer-sl">S.L.</span>
+      </div>
       <p class="footer-tagline" data-i18n="footer_tagline">Instalaciones eléctricas profesionales&#10;en Bergara desde 1999.</p>
       <div class="footer-cert">EIBT · Instalatzaile Baimendua / Instalador Autorizado</div>
     </div>
@@ -510,7 +535,7 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
     <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
     <div class="modal-img"><img id="modalImg" src="" alt="" /><div class="modal-img-ov"></div>
       <div class="modal-icon-box" id="modalIconBox">
-        <svg id="modalSvg" viewBox="0 0 24 24"><polyline points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
       </div>
     </div>
     <div class="modal-body">
@@ -524,7 +549,7 @@ footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
 </div>
 
 <script>
-/* ── SVG ICONS (sin emojis) ── */
+/* ── SVG ICONS ── */
 const ICONS = {
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>',
   factory: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8l6-4v4l6-4v4l6-4v16H2z"/><line x1="6" y1="14" x2="6" y2="14"/><line x1="10" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="14" y2="14"/></svg>',
@@ -598,7 +623,7 @@ const T = {
   }
 }
 
-/* ── DATA — imágenes coherentes con electricidad ── */
+/* ── SERVICES DATA — images coherent with topic ── */
 const SERVICES = [
   { iconKey:'home',
     img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
@@ -662,20 +687,80 @@ const SERVICES = [
     bullets_eu:['Zoru erradiatzailea eta berokuntzа zentrala','Gas eta kondentsazio-galdarrak','Aerotermiа eta bero-ponpa','Obra berri eta erreformetako iturgintzа','Mantentze-lanak eta urteko errebisioak'] },
 ]
 
-/* Imágenes corregidas: todas de material eléctrico real */
+/* ── CATALOG — all images replaced with correct electrical material photos ── */
 const PRODUCTS = [
-  { cat_es:'Cableado', cat_eu:'Kableatzea', name_es:'Cable RZ1-K (AS)', name_eu:'RZ1-K (AS) Kablea', desc_es:'Cable flexible libre de halógenos. Resistente al fuego. Para instalaciones interiores.', desc_eu:'Halogeno gabeko kable malgua. Suari erresistentea. Barne-instalazioetarako.', img:'https://images.unsplash.com/photo-1621905252472-943afaa20e20?w=400&q=80', badge_es:'Más vendido', badge_eu:'Gehien saltua' },
-  { cat_es:'Cableado', cat_eu:'Kableatzea', name_es:'Cable Manguera H07V-K', name_eu:'H07V-K Manguera Kablea', desc_es:'Cable unipolar flexible con aislamiento PVC. Ideal para instalaciones en tubo.', desc_eu:'PVC isolamendua duen kable unipolar malgua. Hodietan egokia.', img:'https://images.unsplash.com/photo-1601524909162-ae8725290836?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak', name_es:'Cuadro de Distribución', name_eu:'Banaketa-Armairua', desc_es:'Armario metálico para protecciones en instalaciones industriales y terciarias.', desc_eu:'Metalezko armairua industria eta zerbitzu-instalazioetarako babesak gordetzeko.', img:'https://images.unsplash.com/photo-1581092786450-7d1b2a4fad0a?w=400&q=80', badge_es:'Industrial', badge_eu:'Industriala' },
-  { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak', name_es:'PIA / Interruptor Automático', name_eu:'PIA / Etengailu Automatikoa', desc_es:'Interruptor automático magnetotérmico para protección de circuitos.', desc_eu:'Etengailu automatiko magnetotermiкoa zirkuituak babesteko.', img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Iluminación', cat_eu:'Argiztapena', name_es:'Panel LED 60x60cm', name_eu:'LED Panela 60x60cm', desc_es:'Luminaria empotrable alta eficiencia para oficinas y locales comerciales. 40W 4000K.', desc_eu:'Eraginkortasun handiko luminaria bulegoentzat. 40W 4000K.', img:'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&q=80', badge_es:'Eficiencia A++', badge_eu:'A++ Eraginkortasuna' },
-  { cat_es:'Iluminación', cat_eu:'Argiztapena', name_es:'Foco LED Downlight', name_eu:'LED Downlight Fokua', desc_es:'Foco empotrable LED regulable. Disponible en 3000K, 4000K y 6500K. 12W.', desc_eu:'LED foko erregulagarria. 3000K, 4000K eta 6500K eskuragarri. 12W.', img:'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Automatización', cat_eu:'Automatizazioa', name_es:'Interruptor Crepuscular', name_eu:'Ilunabarreko Etengailua', desc_es:'Control automático de iluminación exterior según nivel de luz ambiente.', desc_eu:'Kanpoko argiztapenaren kontrol automatikoa inguruko argiaren arabera.', img:'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Automatización', cat_eu:'Automatizazioa', name_es:'Detector de Movimiento PIR', name_eu:'PIR Mugimendua Detektagailua', desc_es:'Detector de presencia para control automático de luminarias y seguridad.', desc_eu:'Presentzia-detektagailua luminaren eta segurtasunaren kontrol automatikorako.', img:'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Protección', cat_eu:'Babesa', name_es:'Diferencial 40A 30mA', name_eu:'Diferentziala 40A 30mA', desc_es:'Interruptor diferencial para protección contra contactos indirectos y corrientes de fuga.', desc_eu:'Zeharkako kontaktuen eta ihes-korrienteen aurkako babeserako etengailua.', img:'https://images.unsplash.com/photo-1612835387877-cc5d08d70b38?w=400&q=80', badge_es:'Seguridad', badge_eu:'Segurtasuna' },
-  { cat_es:'Protección', cat_eu:'Babesa', name_es:'IGA / Interruptor General', name_eu:'IGA / Etengailu Orokorra', desc_es:'Interruptor general de mando y protección para cuadros eléctricos.', desc_eu:'Aginte eta babes etengailu orokorra armairu elektrikoetarako.', img:'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Cableado', cat_eu:'Kableatzea', name_es:'Tubo Corrugado Reforzado', name_eu:'Hodi Korrugatua Indartua', desc_es:'Tubo de protección para cableado empotrado en paredes y suelos. Alta resistencia.', desc_eu:'Hormetan eta zoruan sartutako kablerako babes-hodia. Erresistentzia handia.', img:'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80', badge_es:null, badge_eu:null },
-  { cat_es:'Iluminación', cat_eu:'Argiztapena', name_es:'Tira LED RGB', name_eu:'LED RGB Zerrenda', desc_es:'Tira LED de colores programables para decoración y ambientación. IP65.', desc_eu:'Kolore programagarrien LED zerrenda apainketarako. IP65.', img:'https://images.unsplash.com/photo-1520869562399-e772f042f422?w=400&q=80', badge_es:'Decoración', badge_eu:'Apaingarria' },
+  { cat_es:'Cableado', cat_eu:'Kableatzea',
+    name_es:'Cable RZ1-K (AS)', name_eu:'RZ1-K (AS) Kablea',
+    desc_es:'Cable flexible libre de halógenos. Resistente al fuego. Para instalaciones interiores.',
+    desc_eu:'Halogeno gabeko kable malgua. Suari erresistentea. Barne-instalazioetarako.',
+    img:'https://images.unsplash.com/photo-1621905252472-943afaa20e20?w=400&q=80',
+    badge_es:'Más vendido', badge_eu:'Gehien saltua' },
+  { cat_es:'Cableado', cat_eu:'Kableatzea',
+    name_es:'Tubo Corrugado Reforzado', name_eu:'Hodi Korrugatua Indartua',
+    desc_es:'Tubo de protección para cableado empotrado en paredes y suelos. Alta resistencia.',
+    desc_eu:'Hormetan eta zoruan sartutako kablerako babes-hodia. Erresistentzia handia.',
+    img:'https://images.unsplash.com/photo-1624365168968-f283d506c6b6?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak',
+    name_es:'Cuadro de Distribución', name_eu:'Banaketa-Armairua',
+    desc_es:'Armario metálico para protecciones en instalaciones industriales y terciarias.',
+    desc_eu:'Metalezko armairua industria eta zerbitzu-instalazioetarako babesak gordetzeko.',
+    img:'https://images.unsplash.com/photo-1581092786450-7d1b2a4fad0a?w=400&q=80',
+    badge_es:'Industrial', badge_eu:'Industriala' },
+  { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak',
+    name_es:'PIA / Interruptor Automático', name_eu:'PIA / Etengailu Automatikoa',
+    desc_es:'Interruptor automático magnetotérmico para protección de circuitos.',
+    desc_eu:'Etengailu automatiko magnetotermikoa zirkuituak babesteko.',
+    img:'https://images.unsplash.com/photo-1621905251918-56de4e06284e?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Iluminación', cat_eu:'Argiztapena',
+    name_es:'Panel LED 60x60cm', name_eu:'LED Panela 60x60cm',
+    desc_es:'Luminaria empotrable alta eficiencia para oficinas y locales comerciales. 40W 4000K.',
+    desc_eu:'Eraginkortasun handiko luminaria bulegoentzat. 40W 4000K.',
+    img:'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&q=80',
+    badge_es:'Eficiencia A++', badge_eu:'A++ Eraginkortasuna' },
+  { cat_es:'Iluminación', cat_eu:'Argiztapena',
+    name_es:'Foco LED Downlight', name_eu:'LED Downlight Fokua',
+    desc_es:'Foco empotrable LED regulable. Disponible en 3000K, 4000K y 6500K. 12W.',
+    desc_eu:'LED foko erregulagarria. 3000K, 4000K eta 6500K eskuragarri. 12W.',
+    img:'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Automatización', cat_eu:'Automatizazioa',
+    name_es:'Interruptor Crepuscular', name_eu:'Ilunabarreko Etengailua',
+    desc_es:'Control automático de iluminación exterior según nivel de luz ambiente.',
+    desc_eu:'Kanpoko argiztapenaren kontrol automatikoa inguruko argiaren arabera.',
+    img:'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Automatización', cat_eu:'Automatizazioa',
+    name_es:'Detector de Movimiento PIR', name_eu:'PIR Mugimendua Detektagailua',
+    desc_es:'Detector de presencia para control automático de luminarias y seguridad.',
+    desc_eu:'Presentzia-detektagailua luminaren eta segurtasunaren kontrol automatikorako.',
+    img:'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Protección', cat_eu:'Babesa',
+    name_es:'Diferencial 40A 30mA', name_eu:'Diferentziala 40A 30mA',
+    desc_es:'Interruptor diferencial para protección contra contactos indirectos y corrientes de fuga.',
+    desc_eu:'Zeharkako kontaktuen eta ihes-korrienteen aurkako babeserako etengailua.',
+    img:'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&q=80',
+    badge_es:'Seguridad', badge_eu:'Segurtasuna' },
+  { cat_es:'Protección', cat_eu:'Babesa',
+    name_es:'IGA / Interruptor General', name_eu:'IGA / Etengailu Orokorra',
+    desc_es:'Interruptor general de mando y protección para cuadros eléctricos.',
+    desc_eu:'Aginte eta babes etengailu orokorra armairu elektrikoetarako.',
+    img:'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Cableado', cat_eu:'Kableatzea',
+    name_es:'Cable Manguera Flexible', name_eu:'Manguera Kable Malgua',
+    desc_es:'Cable unipolar flexible con aislamiento PVC. Ideal para instalaciones en tubo.',
+    desc_eu:'PVC isolamendua duen kable unipolar malgua. Hodietan egokia.',
+    img:'https://images.unsplash.com/photo-1621905252472-943afaa20e20?w=400&q=80',
+    badge_es:null, badge_eu:null },
+  { cat_es:'Iluminación', cat_eu:'Argiztapena',
+    name_es:'Tira LED RGB', name_eu:'LED RGB Zerrenda',
+    desc_es:'Tira LED de colores programables para decoración y ambientación. IP65.',
+    desc_eu:'Kolore programagarrien LED zerrenda apainketarako. IP65.',
+    img:'https://images.unsplash.com/photo-1520869562399-e772f042f422?w=400&q=80',
+    badge_es:'Decoración', badge_eu:'Apaingarria' },
 ]
 
 const REASONS = {
@@ -711,6 +796,16 @@ initCounters()
 initScroll()
 initForm()
 
+/* ── NAVIGATION — renamed to goSection to avoid conflict with window.scrollTo ── */
+function goSection(id) {
+  const el = document.getElementById(id)
+  if (el) {
+    const offset = 80 // height of fixed navbar
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+}
+
 /* ── LANG ── */
 function setLang(l) {
   lang = l
@@ -728,11 +823,7 @@ function setLang(l) {
 
 function t(k) { return T[lang][k] || k }
 
-function scrollTo(id) {
-  const el = document.getElementById(id)
-  if(el) el.scrollIntoView({behavior:'smooth', block:'start'})
-}
-
+/* ── NAVBAR scroll behaviour ── */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60)
 })
@@ -747,7 +838,10 @@ function renderServices() {
   const grid = document.getElementById('svcGrid')
   grid.innerHTML = SERVICES.map((s,i) => `
     <div class="svc-card" onclick="openModal(${i})">
-      <div class="svc-img"><img src="${s.img}" alt="${lang==='es'?s.title_es:s.title_eu}" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80'" /><div class="svc-img-ov"></div>
+      <div class="svc-img">
+        <img src="${s.img}" alt="${lang==='es'?s.title_es:s.title_eu}"
+             onerror="this.style.display='none';this.parentElement.style.background='var(--bg3)'" />
+        <div class="svc-img-ov"></div>
         <div class="svc-icon-box">${ICONS[s.iconKey]}</div>
       </div>
       <div class="svc-body">
@@ -784,7 +878,7 @@ function closeModal(e) {
 function closeModalGoContact() {
   document.getElementById('modal').classList.remove('open')
   document.body.style.overflow = ''
-  setTimeout(()=>scrollTo('contacto'), 200)
+  setTimeout(()=>goSection('contacto'), 200)
 }
 
 /* ── CATALOG ── */
@@ -801,20 +895,21 @@ function renderProducts() {
   const cats = t('cat_cats')
   const filtered = activeCat === 0 ? PRODUCTS : PRODUCTS.filter(p => (lang==='es'?p.cat_es:p.cat_eu) === cats[activeCat])
   document.getElementById('catGrid').innerHTML = filtered.map(p => {
-    const name = lang==='es'?p.name_es:p.name_eu
-    const desc = lang==='es'?p.desc_es:p.desc_eu
-    const cat  = lang==='es'?p.cat_es:p.cat_eu
-    const badge= lang==='es'?p.badge_es:p.badge_eu
+    const name  = lang==='es'?p.name_es:p.name_eu
+    const desc  = lang==='es'?p.desc_es:p.desc_eu
+    const cat   = lang==='es'?p.cat_es:p.cat_eu
+    const badge = lang==='es'?p.badge_es:p.badge_eu
     return `<div class="prod-card">
       <div class="prod-img">
-        <img src="${p.img}" alt="${name}" onerror="this.src='https://images.unsplash.com/photo-1581092786450-7d1b2a4fad0a?w=400&q=80'" />
+        <img src="${p.img}" alt="${name}"
+             onerror="this.style.display='none'" />
         ${badge?`<span class="prod-badge">${badge}</span>`:''}
         <span class="prod-cat">${cat}</span>
       </div>
       <div class="prod-info">
         <h3 class="prod-name">${name}</h3>
         <p class="prod-desc">${desc}</p>
-        <button class="prod-btn" onclick="scrollTo('contacto')">${t('cat_btn')}</button>
+        <button class="prod-btn" onclick="goSection('contacto')">${t('cat_btn')}</button>
       </div>
     </div>`
   }).join('')
@@ -833,7 +928,7 @@ function renderReasons() {
 function renderFooter() {
   document.getElementById('footerServices').innerHTML = t('services_list').map(s=>`<li>${s}</li>`).join('')
   const ids = ['servicios','catalogo','nosotros','ubicacion','contacto']
-  document.getElementById('footerNav').innerHTML = t('nav_list').map((l,i)=>`<li><a onclick="scrollTo('${ids[i]}')">${l}</a></li>`).join('')
+  document.getElementById('footerNav').innerHTML = t('nav_list').map((l,i)=>`<li><a onclick="goSection('${ids[i]}')">${l}</a></li>`).join('')
 }
 
 /* ── FORM ── */
