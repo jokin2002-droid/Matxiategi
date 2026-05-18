@@ -1,0 +1,4 @@
+/* Reset - App.css se encarga del resto */
+*, *::before, *::after {
+  box-sizing: border-box;
+}

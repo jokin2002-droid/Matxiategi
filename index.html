@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matxiategi S.L. | Instalaciones Eléctricas · Bergara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:       #f4f5f7;
+  --bg2:      #ffffff;
+  --bg3:      #eaecf2;
+  --bg4:      #dde0ea;
+  --dark:     #1a1d2e;
+  --dark2:    #252840;
+  --blue:     #3a7fff;
+  --blue2:    #6aa0ff;
+  --blue-dim: rgba(58,127,255,0.10);
+  --white:    #ffffff;
+  --text:     #1a1d2e;
+  --text2:    #4a5068;
+  --text3:    #7a84a0;
+  --border:   rgba(58,127,255,0.14);
+  --ff-head:  'Bebas Neue',sans-serif;
+  --ff-body:  'Barlow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--ff-body);cursor:pointer}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg3)}
+::-webkit-scrollbar-thumb{background:var(--blue)}
+
+/* ── UTILS ── */
+.label{font-size:.72rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--blue);margin-bottom:.8rem;display:block}
+.h-display{font-family:var(--ff-head);font-size:clamp(2.4rem,6vw,5rem);line-height:.93;letter-spacing:.03em;color:var(--text)}
+.h-display span{color:var(--blue)}
+.btn-main{display:inline-block;font-family:var(--ff-body);font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--blue);padding:.9rem 2rem;border:none;transition:all .3s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));cursor:pointer}
+.btn-main:hover{background:var(--blue2);transform:translateY(-3px);box-shadow:0 15px 40px rgba(58,127,255,.28)}
+.btn-ghost{display:inline-block;font-size:.85rem;font-weight:500;letter-spacing:.08em;color:var(--text);border-bottom:1px solid rgba(26,29,46,.35);padding-bottom:2px;transition:all .3s;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none}
+.btn-ghost:hover{color:var(--blue);border-color:var(--blue)}
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.fade-up.vis{opacity:1;transform:translateY(0)}
+.fade-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
+.fade-left.vis{opacity:1;transform:translateX(0)}
+
+/* ── NAVBAR ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.5rem 4rem;transition:all .4s}
+nav.scrolled{background:rgba(244,245,247,.96);backdrop-filter:blur(20px);padding:1rem 4rem;border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(58,127,255,.07)}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:2rem}
+.nav-logo{display:flex;align-items:baseline;gap:.5rem;flex-shrink:0}
+.nav-logo .bolt{font-size:1.1rem;color:var(--blue);font-family:var(--ff-head);letter-spacing:.05em}
+.nav-logo .name{font-family:var(--ff-head);font-size:1.5rem;letter-spacing:.08em;color:var(--text)}
+.nav-logo .sl{font-size:.65rem;font-weight:700;color:var(--blue);letter-spacing:.12em}
+.nav-links{display:flex;list-style:none;gap:2.2rem;margin-left:auto}
+.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);transition:color .3s;position:relative;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--blue);transition:width .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+.lang-toggle{display:flex;align-items:center;gap:.35rem;border:1px solid var(--border);padding:.3rem .6rem;background:var(--white)}
+.lang-btn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--text3);background:none;border:none;padding:.1rem .2rem;cursor:pointer;transition:color .2s}
+.lang-btn.active{color:var(--blue)}
+.lang-sep{color:var(--border);font-size:.75rem}
+.nav-cta{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--blue);padding:.65rem 1.3rem;border:none;cursor:pointer;transition:all .3s;white-space:nowrap}
+.nav-cta:hover{background:var(--blue2);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;margin-left:auto;z-index:901}
+.burger span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;transform-origin:center}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--bg2);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.4rem;font-family:var(--ff-head);letter-spacing:.1em;color:var(--text);cursor:pointer}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
+.hero-bg-img{position:absolute;inset:0}
+.hero-bg-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(50%) brightness(.28)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(26,29,46,.97) 0%,rgba(26,29,46,.82) 50%,rgba(26,29,46,.35) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(58,127,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(58,127,255,.05) 1px,transparent 1px);background-size:60px 60px}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(58,127,255,.12) 0%,transparent 70%);animation:pulse 7s ease-in-out infinite;pointer-events:none}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.1);opacity:1}}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:10rem 4rem 6rem;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);border:1px solid rgba(58,127,255,.3);padding:.45rem 1rem;margin-bottom:2rem;animation:fadeDown .9s ease both}
+.badge-dot{width:6px;height:6px;background:var(--blue2);border-radius:50%;animation:blink 2s ease infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes fadeDown{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.hero-title{font-family:var(--ff-head);font-size:clamp(3.5rem,9vw,8.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:2rem;max-width:720px;color:#f0f2fa}
+.hero-title .l1{display:block;animation:slideUp .9s ease .2s both}
+.hero-title .l2{display:block;color:var(--blue2);animation:slideUp .9s ease .35s both}
+.hero-title .l3{display:block;animation:slideUp .9s ease .5s both}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.hero-desc{font-size:1rem;font-weight:300;line-height:1.75;color:rgba(240,242,250,.58);max-width:500px;margin-bottom:2.5rem;animation:fadeUp .9s ease .7s both}
+.hero-btns{display:flex;gap:1.5rem;align-items:center;margin-bottom:4rem;animation:fadeUp .9s ease .9s both;flex-wrap:wrap}
+.hero-btns .btn-ghost{color:rgba(240,242,250,.8);border-color:rgba(240,242,250,.3)}
+.hero-btns .btn-ghost:hover{color:var(--blue2);border-color:var(--blue2)}
+.hero-stats{display:flex;gap:3rem;animation:fadeUp .9s ease 1.1s both;flex-wrap:wrap}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.stat-num{font-family:var(--ff-head);font-size:2.8rem;color:var(--blue2);line-height:1}
+.stat-lbl{font-size:.72rem;font-weight:400;color:rgba(240,242,250,.45);letter-spacing:.08em;text-transform:uppercase;margin-top:.25rem}
+.hero-stat{position:relative;padding-left:1.5rem}
+.hero-stat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:55%;background:rgba(58,127,255,.3)}
+.hero-stat:first-child{padding-left:0}
+.hero-stat:first-child::before{display:none}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeUp 1s ease 1.5s both}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--blue2),transparent);animation:scrollAnim 2s ease infinite}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.scroll-hint span{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,242,250,.35)}
+
+/* ── SERVICES ── */
+.services{background:var(--bg2);padding:8rem 4rem;position:relative;overflow:hidden}
+.services::before{content:'ZERBITZUAK';position:absolute;top:1rem;right:-2rem;font-family:var(--ff-head);font-size:11rem;color:rgba(58,127,255,.04);white-space:nowrap;pointer-events:none}
+.svc-header{max-width:1400px;margin:0 auto 4rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
+.svc-header .label{grid-column:1/-1}
+.svc-intro{font-size:.97rem;line-height:1.72;color:var(--text2);font-weight:300}
+.svc-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bg4)}
+.svc-card{background:var(--bg2);position:relative;overflow:hidden;cursor:pointer;transition:background .4s}
+.svc-card:hover{background:var(--bg)}
+.svc-img{height:190px;overflow:hidden;position:relative}
+.svc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%) brightness(.75);transition:all .6s}
+.svc-card:hover .svc-img img{filter:grayscale(0%) brightness(.9);transform:scale(1.05)}
+.svc-img-ov{position:absolute;inset:0;background:linear-gradient(to top,var(--bg2) 0%,transparent 60%)}
+.svc-card:hover .svc-img-ov{background:linear-gradient(to top,var(--bg) 0%,transparent 60%)}
+.svc-icon-box{position:absolute;bottom:1rem;left:1.5rem;width:34px;height:34px;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.svc-icon-box svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.svc-body{padding:1.5rem 1.5rem 2rem}
+.svc-title{font-family:var(--ff-head);font-size:1.35rem;letter-spacing:.04em;color:var(--text);margin-bottom:.65rem;transition:color .3s}
+.svc-card:hover .svc-title{color:var(--blue)}
+.svc-desc{font-size:.86rem;line-height:1.65;color:var(--text2);font-weight:300;margin-bottom:1rem}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.svc-tag{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);border:1px solid rgba(58,127,255,.22);padding:.22rem .6rem}
+.svc-more{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);opacity:0;transform:translateX(-8px);transition:all .3s;display:inline-block}
+.svc-card:hover .svc-more{opacity:1;transform:translateX(0)}
+.svc-bar{position:absolute;bottom:0;left:0;height:2px;width:0;background:var(--blue);transition:width .4s}
+.svc-card:hover .svc-bar{width:100%}
+
+/* ── MODAL ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(26,29,46,.72);backdrop-filter:blur(10px);z-index:1000;align-items:center;justify-content:center;padding:2rem}
+.modal-bg.open{display:flex;animation:fadeInBg .3s ease}
+@keyframes fadeInBg{from{opacity:0}to{opacity:1}}
+.modal{background:var(--bg2);border:1px solid var(--border);max-width:750px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUpM .35s ease}
+@keyframes slideUpM{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--blue-dim);border:1px solid var(--border);color:var(--blue);font-size:1rem;width:36px;height:36px;cursor:pointer;z-index:10;transition:all .2s}
+.modal-close:hover{background:var(--blue);color:var(--white)}
+.modal-img{height:200px;overflow:hidden;position:relative}
+.modal-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.75)}
+.modal-img-ov{position:absolute;inset:0;background:linear-gradient(to top,var(--bg2) 0%,transparent 60%)}
+.modal-icon-box{position:absolute;bottom:1rem;left:1.5rem;width:40px;height:40px;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.modal-icon-box svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.modal-body{padding:2rem 2rem 2.5rem}
+.modal-title{font-family:var(--ff-head);font-size:2.1rem;letter-spacing:.04em;margin:.5rem 0 1.2rem;color:var(--text)}
+.modal-desc{font-size:.94rem;line-height:1.78;color:var(--text2);font-weight:300;margin-bottom:1.5rem}
+.modal-bullets{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.modal-bullets li{display:flex;align-items:center;gap:.7rem;font-size:.88rem;color:var(--text2)}
+.bullet-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;flex-shrink:0}
+.modal-cta{width:100%;padding:1rem;clip-path:none;text-align:center}
+
+/* ── CATALOG ── */
+.catalog{background:var(--bg);padding:8rem 4rem;position:relative}
+.catalog::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.cat-inner{max-width:1400px;margin:0 auto}
+.cat-header{margin-bottom:2.5rem}
+.cat-sub{margin-top:1.2rem;font-size:.96rem;line-height:1.7;color:var(--text2);font-weight:300;max-width:700px}
+.cat-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem}
+.filter-btn{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);background:var(--bg2);border:1px solid var(--bg4);padding:.55rem 1.1rem;cursor:pointer;transition:all .3s;font-family:var(--ff-body)}
+.filter-btn:hover{color:var(--text);border-color:var(--text3)}
+.filter-btn.active{color:var(--white);background:var(--blue);border-color:var(--blue)}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bg4)}
+.prod-card{background:var(--bg2);overflow:hidden;cursor:pointer;transition:background .3s;position:relative}
+.prod-card:hover{background:var(--bg3)}
+.prod-img{height:175px;overflow:hidden;position:relative}
+.prod-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.85);transition:all .5s}
+.prod-card:hover .prod-img img{filter:grayscale(0%) brightness(1);transform:scale(1.06)}
+.prod-badge{position:absolute;top:.7rem;right:.7rem;background:var(--blue);color:var(--white);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .55rem}
+.prod-cat{position:absolute;bottom:.7rem;left:.7rem;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(255,255,255,.88);padding:.18rem .45rem}
+.prod-info{padding:1.2rem 1.2rem 1.5rem}
+.prod-name{font-family:var(--ff-head);font-size:1.1rem;letter-spacing:.04em;color:var(--text);margin-bottom:.45rem;transition:color .3s}
+.prod-card:hover .prod-name{color:var(--blue)}
+.prod-desc{font-size:.8rem;line-height:1.6;color:var(--text2);font-weight:300;margin-bottom:.9rem}
+.prod-btn{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;opacity:0;transform:translateX(-8px);transition:all .3s;font-family:var(--ff-body)}
+.prod-card:hover .prod-btn{opacity:1;transform:translateX(0)}
+
+/* ── WHY US ── */
+.whyus{background:var(--bg2);padding:8rem 4rem;position:relative}
+.whyus::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(58,127,255,.18),transparent)}
+.why-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.why-left .h-display{margin:1rem 0 2.5rem}
+.why-img-wrap{position:relative;overflow:hidden}
+.why-img-wrap img{width:100%;height:420px;object-fit:cover;filter:grayscale(20%) brightness(.88);transition:filter .5s}
+.why-img-wrap:hover img{filter:grayscale(0%) brightness(1)}
+.why-badge{position:absolute;bottom:1.5rem;left:1.5rem;background:var(--blue);padding:1rem 1.5rem}
+.why-badge-num{font-family:var(--ff-head);font-size:2rem;color:var(--white);line-height:1}
+.why-badge-txt{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:.2rem}
+.why-right{display:flex;flex-direction:column}
+.reason{display:flex;gap:1.5rem;padding:1.6rem 0;border-bottom:1px solid var(--bg4);align-items:flex-start;transition:padding-left .3s;cursor:default}
+.reason:first-child{border-top:1px solid var(--bg4)}
+.reason:hover{padding-left:.5rem}
+.reason-num{font-family:var(--ff-head);font-size:1.1rem;color:rgba(58,127,255,.28);flex-shrink:0;margin-top:.12rem;transition:color .3s}
+.reason:hover .reason-num{color:var(--blue)}
+.reason-title{font-size:.98rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
+.reason-desc{font-size:.85rem;line-height:1.65;color:var(--text2);font-weight:300}
+
+/* ── LOCATION ── */
+.location{background:var(--bg);padding:8rem 4rem;position:relative}
+.location::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(58,127,255,.18),transparent)}
+.loc-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;min-height:520px}
+.loc-info .h-display{margin:1rem 0 2.5rem}
+.loc-details{display:flex;flex-direction:column;gap:1.4rem}
+.loc-item{display:flex;gap:1rem;align-items:flex-start}
+.loc-icon-box{width:34px;height:34px;background:var(--blue-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.loc-icon-box svg{width:16px;height:16px;fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.loc-label{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.28rem}
+.loc-val{font-size:.93rem;line-height:1.5;color:var(--text);font-weight:400}
+.loc-val a{color:var(--text);transition:color .3s;border-bottom:1px solid transparent}
+.loc-val a:hover{color:var(--blue);border-color:var(--blue)}
+.loc-map{height:520px;border:1px solid var(--border);position:relative;overflow:hidden}
+.loc-map iframe{width:100%;height:100%;border:0}
+.map-corner{position:absolute;top:0;left:0;width:38px;height:38px;border-top:2px solid var(--blue);border-left:2px solid var(--blue);pointer-events:none}
+
+/* ── CONTACT ── */
+.contact{background:var(--bg2);padding:8rem 4rem;position:relative}
+.contact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(58,127,255,.18),transparent)}
+.con-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:6rem;align-items:start}
+.con-left .h-display{margin:1rem 0 1.4rem}
+.con-desc{font-size:.97rem;line-height:1.7;color:var(--text2);font-weight:300;margin-bottom:2.8rem}
+.con-direct{display:flex;flex-direction:column;gap:1rem}
+.direct-link{display:flex;gap:1rem;align-items:center;padding:.9rem 1.1rem;border:1px solid var(--bg4);transition:all .3s;text-decoration:none}
+.direct-link:hover{border-color:var(--blue);background:var(--blue-dim);transform:translateX(5px)}
+.direct-icon-box{width:34px;height:34px;background:var(--blue-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.direct-icon-box svg{width:16px;height:16px;fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.direct-label{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.18rem}
+.direct-val{font-size:.92rem;color:var(--text)}
+.con-form{display:flex;flex-direction:column;gap:1.1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.38rem}
+.form-group label{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text2)}
+.form-group input,.form-group select,.form-group textarea{background:var(--bg);border:1px solid var(--bg4);color:var(--text);font-family:var(--ff-body);font-size:.9rem;font-weight:400;padding:.82rem 1rem;outline:none;transition:border-color .3s;resize:none;-webkit-appearance:none;appearance:none}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:var(--bg2)}
+.form-group select option{background:var(--bg2);color:var(--text)}
+.form-submit{width:100%;padding:1rem;text-align:center;clip-path:none;margin-top:.4rem}
+.form-success{text-align:center;padding:4rem 2rem;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:1rem;background:var(--bg-dim)}
+.success-icon-box{width:56px;height:56px;background:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.success-icon-box svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.form-success h3{font-family:var(--ff-head);font-size:2rem;color:var(--blue)}
+.form-success p{color:var(--text2);font-size:.93rem}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);border-top:1px solid rgba(58,127,255,.15)}
+.footer-top{max-width:1400px;margin:0 auto;padding:5rem 4rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}
+.footer-logo{font-family:var(--ff-head);font-size:1.7rem;letter-spacing:.06em;margin-bottom:.9rem;color:#f0f2fa}
+.footer-sl{font-family:var(--ff-body);font-size:.7rem;font-weight:700;color:var(--blue2);letter-spacing:.15em;vertical-align:super}
+.footer-tagline{font-size:.86rem;line-height:1.7;color:rgba(240,242,250,.45);font-weight:300;margin-bottom:1.4rem;white-space:pre-line}
+.footer-cert{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue2);border:1px solid rgba(58,127,255,.3);padding:.32rem .7rem;display:inline-block}
+.footer-col h4{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);margin-bottom:1.2rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li{font-size:.85rem;color:rgba(240,242,250,.38);font-weight:300;transition:color .3s;cursor:default}
+.footer-col ul li a{color:rgba(240,242,250,.38);transition:color .3s;cursor:pointer}
+.footer-col ul li:hover,.footer-col ul li a:hover{color:#f0f2fa}
+.footer-bottom{max-width:1400px;margin:0 auto;padding:1.4rem 4rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:rgba(240,242,250,.28);letter-spacing:.05em}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .why-inner,.loc-inner,.con-inner{grid-template-columns:1fr;gap:3rem}
+  .why-img-wrap img{height:300px}
+  .loc-map{height:350px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+}
+@media(max-width:768px){
+  nav,nav.scrolled{padding:1.2rem 1.5rem}
+  .nav-links,.nav-right{display:none}
+  .burger{display:flex}
+  .hero-content{padding:8rem 1.5rem 5rem}
+  .hero-btns{flex-direction:column;align-items:flex-start;gap:1rem}
+  .hero-stats{gap:2rem}
+  .services,.catalog,.whyus,.location,.contact{padding:5rem 1.5rem}
+  .svc-header{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;padding:3rem 1.5rem 2rem}
+  .footer-bottom{padding:1.2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
+@media(max-width:480px){.cat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="bolt">&#9889;</span>
+      <span class="name">MATXIATEGI</span>
+      <span class="sl">S.L.</span>
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="scrollTo('servicios')" data-i18n="nav_services">Servicios</a></li>
+      <li><a onclick="scrollTo('catalogo')" data-i18n="nav_catalog">Catálogo</a></li>
+      <li><a onclick="scrollTo('nosotros')" data-i18n="nav_about">Nosotros</a></li>
+      <li><a onclick="scrollTo('ubicacion')" data-i18n="nav_location">Ubicación</a></li>
+      <li><a onclick="scrollTo('contacto')" data-i18n="nav_contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" onclick="setLang('eu')">EU</button>
+      </div>
+      <button class="nav-cta btn-main" onclick="scrollTo('contacto')" data-i18n="nav_cta">Pedir Presupuesto</button>
+    </div>
+    <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="scrollTo('servicios');toggleMenu()" data-i18n="nav_services">Servicios</a>
+  <a onclick="scrollTo('catalogo');toggleMenu()" data-i18n="nav_catalog">Catálogo</a>
+  <a onclick="scrollTo('nosotros');toggleMenu()" data-i18n="nav_about">Nosotros</a>
+  <a onclick="scrollTo('ubicacion');toggleMenu()" data-i18n="nav_location">Ubicación</a>
+  <a onclick="scrollTo('contacto');toggleMenu()" data-i18n="nav_contact">Contacto</a>
+  <div class="lang-toggle" style="margin-top:1rem">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" onclick="setLang('eu')">EU</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-img"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=80" alt="electricidad" /></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span><span data-i18n="hero_badge">Desde 1999 — Bergara, Gipuzkoa</span></div>
+    <h1 class="hero-title">
+      <span class="l1" data-i18n="hero_l1">EXPERTOS</span>
+      <span class="l2" data-i18n="hero_l2">EN ELECTRICIDAD</span>
+      <span class="l3" data-i18n="hero_l3">INDUSTRIAL</span>
+    </h1>
+    <p class="hero-desc" data-i18n="hero_desc">Instalaciones eléctricas residenciales e industriales, domótica, automatización y mantenimiento. Más de 25 años de confianza en Bergara y Gipuzkoa.</p>
+    <div class="hero-btns">
+      <button class="btn-main" onclick="scrollTo('contacto')" data-i18n="hero_cta1">Solicitar Presupuesto</button>
+      <button class="btn-ghost" onclick="scrollTo('servicios')" data-i18n="hero_cta2">Ver Servicios →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="stat-num" id="cnt0">0</div><div class="stat-lbl" data-i18n="hero_stat1">Años de experiencia</div></div>
+      <div class="hero-stat"><div class="stat-num" id="cnt1">0</div><div class="stat-lbl" data-i18n="hero_stat2">Proyectos completados</div></div>
+      <div class="hero-stat"><div class="stat-num" id="cnt2">0</div><div class="stat-lbl" data-i18n="hero_stat3">Clientes satisfechos</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="svc-header fade-up">
+    <span class="label" data-i18n="svc_label">Lo que hacemos</span>
+    <h2 class="h-display" data-i18n-html="svc_title">NUESTROS<br><span>SERVICIOS</span></h2>
+    <p class="svc-intro" data-i18n="svc_intro">Soluciones eléctricas integrales para hogares y empresas de Gipuzkoa. Instaladores autorizados con más de 25 años de experiencia.</p>
+  </div>
+  <div class="svc-grid" id="svcGrid"></div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog" id="catalogo">
+  <div class="cat-inner">
+    <div class="cat-header fade-up">
+      <span class="label" data-i18n="cat_label">Materiales</span>
+      <h2 class="h-display" data-i18n-html="cat_title">CATÁLOGO DE<br><span>PRODUCTOS</span></h2>
+      <p class="cat-sub" data-i18n="cat_sub">Trabajamos con los mejores fabricantes del sector. Suministro e instalación de materiales eléctricos de primera calidad.</p>
+    </div>
+    <div class="cat-filters fade-up" id="catFilters"></div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="whyus" id="nosotros">
+  <div class="why-inner">
+    <div class="why-left fade-left">
+      <span class="label" data-i18n="why_label">Por qué elegirnos</span>
+      <h2 class="h-display" data-i18n-html="why_title">MÁS DE 25 AÑOS<br><span>A TU SERVICIO</span></h2>
+      <div class="why-img-wrap">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80" alt="Técnico eléctrico" />
+        <div class="why-badge"><div class="why-badge-num">1999</div><div class="why-badge-txt" data-i18n="why_badge">Fundada en Bergara</div></div>
+      </div>
+    </div>
+    <div class="why-right fade-up" id="reasonsList"></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="ubicacion">
+  <div class="loc-inner">
+    <div class="loc-info fade-left">
+      <span class="label" data-i18n="loc_label">Dónde estamos</span>
+      <h2 class="h-display" data-i18n-html="loc_title">ENCUÉNTRANOS<br><span>EN BERGARA</span></h2>
+      <div class="loc-details">
+        <div class="loc-item">
+          <div class="loc-icon-box"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div><div class="loc-label" data-i18n="loc_address">Dirección</div><div class="loc-val">Calle Zurradero 8, Bajo<br>20570 Bergara, Gipuzkoa</div></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon-box"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
+          <div><div class="loc-label" data-i18n="loc_phone">Teléfono</div><div class="loc-val"><a href="tel:943761994">943 761 994</a></div></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon-box"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div><div class="loc-label">Email</div><div class="loc-val"><a href="mailto:matxiategi@gmail.com">matxiategi@gmail.com</a></div></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+          <div><div class="loc-label" data-i18n="loc_schedule">Horario</div><div class="loc-val" data-i18n="loc_schedule_val">Lun – Vie: 8:00 – 18:00<br>Sábados con cita previa</div></div>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=Calle+Zurradero+8,+Bergara" target="_blank" class="btn-main" style="margin-top:2rem" data-i18n="loc_maps">Cómo llegar →</a>
+    </div>
+    <div class="loc-map fade-up">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5813.95!2d-2.4153745!3d43.1173057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4fb48a1b76c7b3%3A0xffb3b4b3b3b3b3b3!2sCalle%20Zurradero%208%2C%2020570%20Bergara!5e0!3m2!1ses!2ses!4v1699999999999" allowfullscreen="" loading="lazy" title="Matxiategi"></iframe>
+      <div class="map-corner"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="con-inner">
+    <div class="con-left fade-left">
+      <span class="label" data-i18n="con_label">Contacto</span>
+      <h2 class="h-display" data-i18n-html="con_title">PIDE TU<br><span>PRESUPUESTO</span></h2>
+      <p class="con-desc" data-i18n="con_desc">Cuéntanos tu proyecto y te llamamos. Presupuesto sin compromiso en menos de 24 horas.</p>
+      <div class="con-direct">
+        <a href="tel:943761994" class="direct-link">
+          <div class="direct-icon-box"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
+          <div><div class="direct-label" data-i18n="con_call">Llamada directa</div><div class="direct-val">943 761 994</div></div>
+        </a>
+        <a href="mailto:matxiategi@gmail.com" class="direct-link">
+          <div class="direct-icon-box"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div><div class="direct-label">Email</div><div class="direct-val">matxiategi@gmail.com</div></div>
+        </a>
+        <a href="https://wa.me/34943761994" target="_blank" class="direct-link">
+          <div class="direct-icon-box"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.553 4.12 1.523 5.854L0 24l6.293-1.5A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.959 0-3.809-.5-5.432-1.378l-.39-.22-4.02.959.976-3.928-.254-.404A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+          <div><div class="direct-label">WhatsApp</div><div class="direct-val" data-i18n="con_whatsapp">Escríbenos</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="con-right fade-up">
+      <div id="formWrap">
+        <form class="con-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label data-i18n="con_name">Nombre *</label><input type="text" name="nombre" required data-i18n-ph="con_ph_name" placeholder="Tu nombre" /></div>
+            <div class="form-group"><label data-i18n="con_phone">Teléfono *</label><input type="tel" name="tel" required placeholder="600 000 000" /></div>
+          </div>
+          <div class="form-group"><label data-i18n="con_email">Email</label><input type="email" name="email" data-i18n-ph="con_ph_email" placeholder="tu@email.com" /></div>
+          <div class="form-group"><label data-i18n="con_service">Servicio</label><select name="servicio" id="serviceSelect"></select></div>
+          <div class="form-group"><label data-i18n="con_msg">Descripción *</label><textarea name="msg" rows="5" required data-i18n-ph="con_ph_msg" placeholder="Cuéntanos qué necesitas..."></textarea></div>
+          <button type="submit" class="btn-main form-submit" data-i18n="con_submit">Solicitar Presupuesto Gratuito →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">&#9889; MATXIATEGI <span class="footer-sl">S.L.</span></div>
+      <p class="footer-tagline" data-i18n="footer_tagline">Instalaciones eléctricas profesionales&#10;en Bergara desde 1999.</p>
+      <div class="footer-cert">EIBT · Instalatzaile Baimendua / Instalador Autorizado</div>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_services">Servicios</h4>
+      <ul id="footerServices"></ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_nav">Navegación</h4>
+      <ul id="footerNav"></ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contacto</h4>
+      <ul>
+        <li><a href="tel:943761994">943 761 994</a></li>
+        <li><a href="mailto:matxiategi@gmail.com">matxiategi@gmail.com</a></li>
+        <li>Calle Zurradero 8, Bajo</li>
+        <li>20570 Bergara, Gipuzkoa</li>
+        <li style="margin-top:.4rem;color:rgba(240,242,250,.28)">Lun–Vie / Ast–Ost: 8:00–18:00</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> Matxiategi S.L. — <span data-i18n="footer_rights">Todos los derechos reservados</span></span>
+    <span>Bergara · Gipuzkoa · Euskadi</span>
+  </div>
+</footer>
+
+<!-- SERVICE MODAL -->
+<div class="modal-bg" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+    <div class="modal-img"><img id="modalImg" src="" alt="" /><div class="modal-img-ov"></div>
+      <div class="modal-icon-box" id="modalIconBox">
+        <svg id="modalSvg" viewBox="0 0 24 24"><polyline points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+      </div>
+    </div>
+    <div class="modal-body">
+      <span class="label" id="modalTags"></span>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+      <ul class="modal-bullets" id="modalBullets"></ul>
+      <button class="btn-main modal-cta" onclick="closeModalGoContact()" data-i18n="svc_modal_cta">Solicitar presupuesto para este servicio →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── SVG ICONS (sin emojis) ── */
+const ICONS = {
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>',
+  factory: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8l6-4v4l6-4v4l6-4v16H2z"/><line x1="6" y1="14" x2="6" y2="14"/><line x1="10" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="14" y2="14"/></svg>',
+  wrench: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
+  cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>',
+  bulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14"/></svg>',
+  droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>',
+}
+
+/* ── TRANSLATIONS ── */
+const T = {
+  es: {
+    nav_services:'Servicios', nav_catalog:'Catálogo', nav_about:'Nosotros', nav_location:'Ubicación', nav_contact:'Contacto', nav_cta:'Pedir Presupuesto',
+    hero_badge:'Desde 1999 — Bergara, Gipuzkoa', hero_l1:'EXPERTOS', hero_l2:'EN ELECTRICIDAD', hero_l3:'INDUSTRIAL',
+    hero_desc:'Instalaciones eléctricas residenciales e industriales, domótica, automatización y mantenimiento. Más de 25 años de confianza en Bergara y Gipuzkoa.',
+    hero_cta1:'Solicitar Presupuesto', hero_cta2:'Ver Servicios →',
+    hero_stat1:'Años de experiencia', hero_stat2:'Proyectos completados', hero_stat3:'Clientes satisfechos',
+    svc_label:'Lo que hacemos', svc_title:'NUESTROS<br><span>SERVICIOS</span>',
+    svc_intro:'Soluciones eléctricas integrales para hogares y empresas de Gipuzkoa. Instaladores autorizados con más de 25 años de experiencia.',
+    svc_more:'Ver más info →', svc_modal_cta:'Solicitar presupuesto para este servicio →',
+    cat_label:'Materiales', cat_title:'CATÁLOGO DE<br><span>PRODUCTOS</span>',
+    cat_sub:'Trabajamos con los mejores fabricantes del sector. Suministro e instalación de materiales eléctricos de primera calidad.',
+    cat_btn:'Consultar disponibilidad →', cat_all:'Todos',
+    why_label:'Por qué elegirnos', why_title:'MÁS DE 25 AÑOS<br><span>A TU SERVICIO</span>', why_badge:'Fundada en Bergara',
+    loc_label:'Dónde estamos', loc_title:'ENCUÉNTRANOS<br><span>EN BERGARA</span>',
+    loc_address:'Dirección', loc_phone:'Teléfono', loc_schedule:'Horario',
+    loc_schedule_val:'Lun – Vie: 8:00 – 18:00<br>Sábados con cita previa', loc_maps:'Cómo llegar →',
+    con_label:'Contacto', con_title:'PIDE TU<br><span>PRESUPUESTO</span>',
+    con_desc:'Cuéntanos tu proyecto y te llamamos. Presupuesto sin compromiso en menos de 24 horas.',
+    con_call:'Llamada directa', con_email:'Email', con_name:'Nombre *', con_phone:'Teléfono *', con_service:'Servicio', con_msg:'Descripción *',
+    con_ph_name:'Tu nombre', con_ph_email:'tu@email.com', con_ph_msg:'Cuéntanos qué necesitas, ubicación, dimensiones aproximadas...',
+    con_whatsapp:'Escríbenos', con_submit:'Solicitar Presupuesto Gratuito →',
+    con_success:'¡Mensaje enviado!', con_success_desc:'Nos pondremos en contacto en menos de 24h.', con_success_btn:'Enviar otro mensaje',
+    footer_services:'Servicios', footer_nav:'Navegación', footer_contact:'Contacto', footer_rights:'Todos los derechos reservados',
+    footer_tagline:'Instalaciones eléctricas profesionales\nen Bergara desde 1999.',
+    services_list:['Instalaciones Residenciales','Instalaciones Industriales','Mantenimiento y Averías','Domótica y Automatización','Iluminación LED','Fontanería y Calefacción'],
+    nav_list:['Servicios','Catálogo','Nosotros','Ubicación','Contacto'],
+    service_opts:['Instalación Residencial','Instalación Industrial','Mantenimiento / Avería','Domótica / Automatización','Iluminación LED','Fontanería / Calefacción','Otro'],
+    service_select:'Selecciona un servicio...',
+    cat_cats:['Todos','Cableado','Cuadros Eléctricos','Iluminación','Automatización','Protección'],
+  },
+  eu: {
+    nav_services:'Zerbitzuak', nav_catalog:'Katalogoa', nav_about:'Gu buruz', nav_location:'Kokapena', nav_contact:'Kontaktua', nav_cta:'Aurrekontua eskatu',
+    hero_badge:'1999tik — Bergara, Gipuzkoa', hero_l1:'ADITUAK', hero_l2:'ELEKTRIZITATE', hero_l3:'INDUSTRIALEAN',
+    hero_desc:'Etxebizitza eta industria elektrizitate-instalazioak, domotika, automatizazioa eta mantentze-lanak. 25 urte baino gehiago Bergaran eta Gipuzkoan.',
+    hero_cta1:'Aurrekontua eskatu', hero_cta2:'Zerbitzuak ikusi →',
+    hero_stat1:'Esperientzia-urte', hero_stat2:'Proiektu burutuak', hero_stat3:'Bezero poztuak',
+    svc_label:'Zer egiten dugun', svc_title:'GURE<br><span>ZERBITZUAK</span>',
+    svc_intro:'Gipuzkoako etxe eta enpresenrako elektrizitate-soluzio integralak. 25 urte baino gehiagoko esperientziarekin instalatzaile baimenduak.',
+    svc_more:'Informazio gehiago →', svc_modal_cta:'Zerbitzu honetarako aurrekontua eskatu →',
+    cat_label:'Materialak', cat_title:'PRODUKTUEN<br><span>KATALOGOA</span>',
+    cat_sub:'Sektorearen fabrikatzaile onenekin lan egiten dugu. Kalitate handiko material elektrikoen hornidura eta instalazioa.',
+    cat_btn:'Eskuragarritasuna kontsultatu →', cat_all:'Guztiak',
+    why_label:'Zergatik hautatu', why_title:'25 URTE BAINO GEHIAGO<br><span>ZURE ZERBITZURA</span>', why_badge:'Bergaran sortua',
+    loc_label:'Non gauden', loc_title:'AURKITU IEZAGUZU<br><span>BERGARAN</span>',
+    loc_address:'Helbidea', loc_phone:'Telefonoa', loc_schedule:'Ordutegia',
+    loc_schedule_val:'Astelehen – Ostirala: 8:00 – 18:00<br>Larunbatak hitzorduz', loc_maps:'Nola iritsi →',
+    con_label:'Kontaktua', con_title:'ESKATU ZURE<br><span>AURREKONTUA</span>',
+    con_desc:'Kontatu zure proiektua eta deitu egingo dizugu. Konpromiso gabe aurrekontua 24 ordutan.',
+    con_call:'Dei zuzena', con_email:'Emaila', con_name:'Izena *', con_phone:'Telefonoa *', con_service:'Zerbitzua', con_msg:'Deskribapena *',
+    con_ph_name:'Zure izena', con_ph_email:'zu@emaila.com', con_ph_msg:'Esan iezaguzu zer behar duzun, kokapena, neurri gutxi gorabeherakoak...',
+    con_whatsapp:'Idatzi iezaguzu', con_submit:'Doako Aurrekontua eskatu →',
+    con_success:'Mezua bidali da!', con_success_desc:'24 ordutan zurekin harremanetan jarriko gara.', con_success_btn:'Beste mezu bat bidali',
+    footer_services:'Zerbitzuak', footer_nav:'Nabigazioa', footer_contact:'Kontaktua', footer_rights:'Eskubide guztiak erreserbatuak',
+    footer_tagline:'Elektrizitate-instalazio profesionalak\nBergaran 1999tik.',
+    services_list:['Etxebizitza Instalazioak','Industria Instalazioak','Mantentze-lanak eta Matxurak','Domotika eta Automatizazioa','LED Argiztapena','Iturgintzа eta Berogailua'],
+    nav_list:['Zerbitzuak','Katalogoa','Gu buruz','Kokapena','Kontaktua'],
+    service_opts:['Etxebizitza Instalazioa','Industria Instalazioa','Mantentze-lanak / Matxura','Domotika / Automatizazioa','LED Argiztapena','Iturgintzа / Berogailua','Bestea'],
+    service_select:'Hautatu zerbitzu bat...',
+    cat_cats:['Guztiak','Kableatzea','Armairu Elektrikoak','Argiztapena','Automatizazioa','Babesa'],
+  }
+}
+
+/* ── DATA — imágenes coherentes con electricidad ── */
+const SERVICES = [
+  { iconKey:'home',
+    img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    title_es:'Instalaciones Residenciales', title_eu:'Etxebizitza Instalazioak',
+    desc_es:'Instalación eléctrica completa para viviendas, reformas y ampliaciones. Certificación y legalización incluidas.',
+    desc_eu:'Etxebizitzen instalazio elektriko osoa, erreformak eta zabalkuntza. Ziurtagiria eta legalizazioa barne.',
+    tags_es:['Viviendas','Reformas','Certificación'], tags_eu:['Etxeak','Erreformak','Ziurtagiria'],
+    detail_es:'Realizamos el proyecto eléctrico completo: diseño del cuadro eléctrico, circuitos de alumbrado y fuerza, toma a tierra, boletín eléctrico y tramitación ante Industria del País Vasco.',
+    detail_eu:'Proiektu elektriko osoa egiten dugu: armairu elektrikoaren diseinua, argiztapen eta indar-zirkuituak, lurra hartzea, boletin elektrikoa eta Industria sailean tramitazioa.',
+    bullets_es:['Cuadros eléctricos y protecciones','Circuitos de alumbrado y fuerza','Toma a tierra y equipotencialidad','Boletín eléctrico y legalización','Puntos de recarga para vehículo eléctrico'],
+    bullets_eu:['Armairu elektrikoak eta babesak','Argiztapen eta indar-zirkuituak','Lurra hartzea eta ekipotentzialtasuna','Boletin elektrikoa eta legalizazioa','Ibilgailu elektrikorako karga-puntuak'] },
+  { iconKey:'factory',
+    img:'https://images.unsplash.com/photo-1581092786450-7d1b2a4fad0a?w=600&q=80',
+    title_es:'Instalaciones Industriales', title_eu:'Industria Instalazioak',
+    desc_es:'Proyectos eléctricos para naves industriales, maquinaria, cuadros de mando y sistemas de potencia.',
+    desc_eu:'Proiektu elektrikoak industria-nabeentzat, makinentzat, aginte-armairuetarako eta potentzia-sistementzat.',
+    tags_es:['Naves industriales','Maquinaria','Cuadros eléctricos'], tags_eu:['Industria-nabeak','Makinak','Armairu elektrikoak'],
+    detail_es:'Diseño y ejecución de instalaciones eléctricas en baja tensión para todo tipo de industrias. Cuadros de mando, centros de transformación, SAI y eficiencia energética industrial.',
+    detail_eu:'Tentsio baxuko instalazio elektrikoen diseinua eta exekuzioa industria mota guztietarako. Aginte-armairuak, eraldakuntza-zentroak, SAI eta industria-energia-eraginkortasuna.',
+    bullets_es:['Cuadros de distribución y mando','Líneas de fuerza para maquinaria','Automatización de procesos industriales','Alumbrado industrial LED','Puesta a tierra y protección de equipos'],
+    bullets_eu:['Banaketa eta aginte-armairuak','Makinariarako indar-lerroak','Industria-prozesuen automatizazioa','Industria LED argiztapena','Lurra hartzea eta ekipoen babesa'] },
+  { iconKey:'wrench',
+    img:'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80',
+    title_es:'Mantenimiento y Averías', title_eu:'Mantentze-lanak eta Matxurak',
+    desc_es:'Servicio de mantenimiento preventivo y correctivo. Diagnóstico y reparación de todo tipo de averías eléctricas.',
+    desc_eu:'Mantentze preventibo eta zuzentzaile zerbitzua. Edozein matxura elektrikoren diagnostikoa eta konponketa.',
+    tags_es:['Mantenimiento','Diagnóstico','Reparaciones'], tags_eu:['Mantentze-lanak','Diagnostikoa','Konponketak'],
+    detail_es:'Contratos de mantenimiento eléctrico periódico para empresas e industrias. Ante averías respondemos con rapidez: diagnóstico preciso y reparación definitiva.',
+    detail_eu:'Enpresenrako eta industriarako mantentze-kontratu elektrikoak. Matxuren aurrean azkar erantzuten dugu: diagnostiko zehatza eta konponketa definitiboa.',
+    bullets_es:['Mantenimiento preventivo programado','Atención urgente a averías','Termografía y análisis de redes','Revisiones reglamentarias','Informes técnicos detallados'],
+    bullets_eu:['Mantentze prebentzibo programatua','Matxuren arreta urgentea','Termografia eta sare-analisia','Arauzko errebisioak','Txosten tekniko zehatzak'] },
+  { iconKey:'cpu',
+    img:'https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80',
+    title_es:'Domótica y Automatización', title_eu:'Domotika eta Automatizazioa',
+    desc_es:'Sistemas inteligentes de control para el hogar y la industria. Ahorro energético y confort con tecnología avanzada.',
+    desc_eu:'Etxerako eta industriarako kontrol-sistema adimentsuak. Energia-aurrezpena eta erosotasuna teknologia aurreratuarekin.',
+    tags_es:['Smart Home','Automatización','Ahorro energético'], tags_eu:['Smart Home','Automatizazioa','Energia-aurrezpena'],
+    detail_es:'Instalamos sistemas de domótica y automatización: control de iluminación, climatización, persianas y seguridad desde el móvil. En industria, automatizamos procesos para reducir costes.',
+    detail_eu:'Domotika eta automatizazio-sistemak instalatzen ditugu: argiztapena, aire-girotua, pertsianak eta segurtasunaren kontrola mugikorretik. Industrian, kostuak murrizteko prozesuak automatizatzen ditugu.',
+    bullets_es:['Control de iluminación y climatización','Gestión de persianas y accesos','Sistemas de seguridad integrados','Monitorización energética en tiempo real','Integración con asistentes de voz'],
+    bullets_eu:['Argiztapen eta klimatizazioaren kontrola','Pertsianen eta sarbideen kudeaketa','Segurtasun-sistema integratuak','Energia-monitorizazioa denbora errealean','Ahots-laguntzaileekin integrazioa'] },
+  { iconKey:'bulb',
+    img:'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&q=80',
+    title_es:'Iluminación LED', title_eu:'LED Argiztapena',
+    desc_es:'Proyectos de iluminación eficiente para interior y exterior. Asesoramiento personalizado y montaje profesional.',
+    desc_eu:'Barne eta kanpoko argiztapen eraginkor-proiektuak. Aholkularitza pertsonalizatua eta muntaia profesionala.',
+    tags_es:['LED','Eficiencia','Interior/Exterior'], tags_eu:['LED','Eraginkortasuna','Barne/Kanpo'],
+    detail_es:'Proyectos de iluminación eficiente con tecnología LED. Estudios lumínicos, cálculo de niveles de iluminancia y selección de luminarias. La renovación LED puede suponer hasta un 70% de ahorro.',
+    detail_eu:'LED teknologiarekin argiztapen eraginkor-proiektuak. Argi-azterketak, iluminantzia-mailen kalkulua eta luminaren hautaketa. LED berritzeak %70 arteko aurrezpena ekar dezake.',
+    bullets_es:['Estudio lumínico y cálculo de iluminancia','Sustitución de luminarias antiguas por LED','Iluminación decorativa y de acento','Alumbrado de emergencia homologado','Control DALI y regulación de luz'],
+    bullets_eu:['Argi-azterketa eta iluminantzia kalkulua','Luminara zaharkituak LEDengatik ordezkatzea','Apaingarri argiztapena','Larrialdi-argiztapena homologatua','DALI kontrola eta argi-erregulazioa'] },
+  { iconKey:'droplet',
+    img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80',
+    title_es:'Fontanería y Calefacción', title_eu:'Iturgintzа eta Berogailua',
+    desc_es:'Instalación y mantenimiento de sistemas de fontanería, suelo radiante, gas natural y calderas.',
+    desc_eu:'Iturgintzа, zoru erradiatzailea, gas naturaleko eta galdaren sistemen instalazioa eta mantentzea.',
+    tags_es:['Fontanería','Suelo radiante','Calderas'], tags_eu:['Iturgintzа','Zoru erradiatzailea','Galdarrak'],
+    detail_es:'Además de electricidad, ofrecemos fontanería y calefacción integral: suelo radiante, calderas de gas y condensación, aerotermia. Servicio oficial de varias marcas de calderas.',
+    detail_eu:'Elektrizitateaz gain, iturgintzа eta berogailu integrala eskaintzen dugu: zoru erradiatzailea, gas eta kondentsazio-galdarrak, aerotermiа. Hainbat galdara-marken zerbitzu ofiziala.',
+    bullets_es:['Suelo radiante y calefacción central','Calderas de gas y condensación','Aerotermia y bomba de calor','Fontanería de obra nueva y reforma','Mantenimiento y revisiones anuales'],
+    bullets_eu:['Zoru erradiatzailea eta berokuntzа zentrala','Gas eta kondentsazio-galdarrak','Aerotermiа eta bero-ponpa','Obra berri eta erreformetako iturgintzа','Mantentze-lanak eta urteko errebisioak'] },
+]
+
+/* Imágenes corregidas: todas de material eléctrico real */
+const PRODUCTS = [
+  { cat_es:'Cableado', cat_eu:'Kableatzea', name_es:'Cable RZ1-K (AS)', name_eu:'RZ1-K (AS) Kablea', desc_es:'Cable flexible libre de halógenos. Resistente al fuego. Para instalaciones interiores.', desc_eu:'Halogeno gabeko kable malgua. Suari erresistentea. Barne-instalazioetarako.', img:'https://images.unsplash.com/photo-1621905252472-943afaa20e20?w=400&q=80', badge_es:'Más vendido', badge_eu:'Gehien saltua' },
+  { cat_es:'Cableado', cat_eu:'Kableatzea', name_es:'Cable Manguera H07V-K', name_eu:'H07V-K Manguera Kablea', desc_es:'Cable unipolar flexible con aislamiento PVC. Ideal para instalaciones en tubo.', desc_eu:'PVC isolamendua duen kable unipolar malgua. Hodietan egokia.', img:'https://images.unsplash.com/photo-1601524909162-ae8725290836?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak', name_es:'Cuadro de Distribución', name_eu:'Banaketa-Armairua', desc_es:'Armario metálico para protecciones en instalaciones industriales y terciarias.', desc_eu:'Metalezko armairua industria eta zerbitzu-instalazioetarako babesak gordetzeko.', img:'https://images.unsplash.com/photo-1581092786450-7d1b2a4fad0a?w=400&q=80', badge_es:'Industrial', badge_eu:'Industriala' },
+  { cat_es:'Cuadros Eléctricos', cat_eu:'Armairu Elektrikoak', name_es:'PIA / Interruptor Automático', name_eu:'PIA / Etengailu Automatikoa', desc_es:'Interruptor automático magnetotérmico para protección de circuitos.', desc_eu:'Etengailu automatiko magnetotermiкoa zirkuituak babesteko.', img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Iluminación', cat_eu:'Argiztapena', name_es:'Panel LED 60x60cm', name_eu:'LED Panela 60x60cm', desc_es:'Luminaria empotrable alta eficiencia para oficinas y locales comerciales. 40W 4000K.', desc_eu:'Eraginkortasun handiko luminaria bulegoentzat. 40W 4000K.', img:'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&q=80', badge_es:'Eficiencia A++', badge_eu:'A++ Eraginkortasuna' },
+  { cat_es:'Iluminación', cat_eu:'Argiztapena', name_es:'Foco LED Downlight', name_eu:'LED Downlight Fokua', desc_es:'Foco empotrable LED regulable. Disponible en 3000K, 4000K y 6500K. 12W.', desc_eu:'LED foko erregulagarria. 3000K, 4000K eta 6500K eskuragarri. 12W.', img:'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Automatización', cat_eu:'Automatizazioa', name_es:'Interruptor Crepuscular', name_eu:'Ilunabarreko Etengailua', desc_es:'Control automático de iluminación exterior según nivel de luz ambiente.', desc_eu:'Kanpoko argiztapenaren kontrol automatikoa inguruko argiaren arabera.', img:'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Automatización', cat_eu:'Automatizazioa', name_es:'Detector de Movimiento PIR', name_eu:'PIR Mugimendua Detektagailua', desc_es:'Detector de presencia para control automático de luminarias y seguridad.', desc_eu:'Presentzia-detektagailua luminaren eta segurtasunaren kontrol automatikorako.', img:'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Protección', cat_eu:'Babesa', name_es:'Diferencial 40A 30mA', name_eu:'Diferentziala 40A 30mA', desc_es:'Interruptor diferencial para protección contra contactos indirectos y corrientes de fuga.', desc_eu:'Zeharkako kontaktuen eta ihes-korrienteen aurkako babeserako etengailua.', img:'https://images.unsplash.com/photo-1612835387877-cc5d08d70b38?w=400&q=80', badge_es:'Seguridad', badge_eu:'Segurtasuna' },
+  { cat_es:'Protección', cat_eu:'Babesa', name_es:'IGA / Interruptor General', name_eu:'IGA / Etengailu Orokorra', desc_es:'Interruptor general de mando y protección para cuadros eléctricos.', desc_eu:'Aginte eta babes etengailu orokorra armairu elektrikoetarako.', img:'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Cableado', cat_eu:'Kableatzea', name_es:'Tubo Corrugado Reforzado', name_eu:'Hodi Korrugatua Indartua', desc_es:'Tubo de protección para cableado empotrado en paredes y suelos. Alta resistencia.', desc_eu:'Hormetan eta zoruan sartutako kablerako babes-hodia. Erresistentzia handia.', img:'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80', badge_es:null, badge_eu:null },
+  { cat_es:'Iluminación', cat_eu:'Argiztapena', name_es:'Tira LED RGB', name_eu:'LED RGB Zerrenda', desc_es:'Tira LED de colores programables para decoración y ambientación. IP65.', desc_eu:'Kolore programagarrien LED zerrenda apainketarako. IP65.', img:'https://images.unsplash.com/photo-1520869562399-e772f042f422?w=400&q=80', badge_es:'Decoración', badge_eu:'Apaingarria' },
+]
+
+const REASONS = {
+  es:[
+    {num:'01',title:'Instaladores Autorizados',desc:'Habilitados por Industria del País Vasco como empresa EIBT (instaladora de electricidad en baja tensión). Toda la documentación en regla.'},
+    {num:'02',title:'+25 Años de Experiencia',desc:'Desde 1999 realizando instalaciones en Bergara y toda Gipuzkoa. Conocemos las necesidades de la zona y sus industrias.'},
+    {num:'03',title:'Presupuesto Gratuito',desc:'Visitamos tu obra o local sin compromiso y elaboramos un presupuesto detallado y transparente. Sin sorpresas.'},
+    {num:'04',title:'Equipo Propio',desc:'Todo el trabajo lo realiza nuestro equipo directo, sin subcontrataciones. Garantizamos calidad y control en cada proyecto.'},
+    {num:'05',title:'Respuesta Rápida',desc:'Atendemos urgencias y averías con la mayor rapidez. En industria el tiempo es dinero.'},
+    {num:'06',title:'Servicio Integral',desc:'Electricidad, fontanería, calefacción, automatización y reformas. Un único proveedor de confianza.'},
+  ],
+  eu:[
+    {num:'01',title:'Instalatzaile Baimenduak',desc:'Euskal Autonomia Erkidegoko Industria Sailak baimendua EIBT enpresa gisa. Dokumentazio guztia egunean.'},
+    {num:'02',title:'+25 Urte Esperientzia',desc:'1999tik instalazioak egiten Bergaran eta Gipuzkoa osoan. Eskualdearen beharrak ondo ezagutzen ditugu.'},
+    {num:'03',title:'Doako Aurrekontua',desc:'Zure obra edo lokala konpromiso gabe bisitatzen dugu eta aurrekontu garden eta zehatza egiten dugu.'},
+    {num:'04',title:'Gure Taldea',desc:'Lan guztia gure talde zuzenak egiten du, azpikontrataziorik gabe. Proiektu bakoitzaren kalitatea bermatzen dugu.'},
+    {num:'05',title:'Erantzun Azkarra',desc:'Larrialdiak eta matxurak ahalik eta azkarren artatzen ditugu. Industrian denbora dirua da.'},
+    {num:'06',title:'Zerbitzu Integrala',desc:'Elektrizitatea, iturgintzа, berogailua, automatizazioa eta erreformak. Hornitzaile bakarra eta fidagarria.'},
+  ]
+}
+
+/* ── STATE ── */
+let lang = 'es'
+let activeCat = 0
+
+/* ── INIT ── */
+document.getElementById('year').textContent = new Date().getFullYear()
+renderServices()
+renderReasons()
+renderFooter()
+renderCatalog()
+initCounters()
+initScroll()
+initForm()
+
+/* ── LANG ── */
+function setLang(l) {
+  lang = l
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === l.toUpperCase()))
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k=el.getAttribute('data-i18n'); if(T[lang][k]!==undefined) el.textContent=T[lang][k] })
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const k=el.getAttribute('data-i18n-html'); if(T[lang][k]) el.innerHTML=T[lang][k] })
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { const k=el.getAttribute('data-i18n-ph'); if(T[lang][k]) el.placeholder=T[lang][k] })
+  activeCat = 0
+  renderServices()
+  renderReasons()
+  renderFooter()
+  renderCatalog()
+  updateServiceSelect()
+}
+
+function t(k) { return T[lang][k] || k }
+
+function scrollTo(id) {
+  const el = document.getElementById(id)
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'})
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60)
+})
+
+function toggleMenu() {
+  document.getElementById('burger').classList.toggle('open')
+  document.getElementById('mobileMenu').classList.toggle('open')
+}
+
+/* ── SERVICES ── */
+function renderServices() {
+  const grid = document.getElementById('svcGrid')
+  grid.innerHTML = SERVICES.map((s,i) => `
+    <div class="svc-card" onclick="openModal(${i})">
+      <div class="svc-img"><img src="${s.img}" alt="${lang==='es'?s.title_es:s.title_eu}" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80'" /><div class="svc-img-ov"></div>
+        <div class="svc-icon-box">${ICONS[s.iconKey]}</div>
+      </div>
+      <div class="svc-body">
+        <h3 class="svc-title">${lang==='es'?s.title_es:s.title_eu}</h3>
+        <p class="svc-desc">${lang==='es'?s.desc_es:s.desc_eu}</p>
+        <div class="svc-tags">${(lang==='es'?s.tags_es:s.tags_eu).map(tag=>`<span class="svc-tag">${tag}</span>`).join('')}</div>
+        <span class="svc-more">${t('svc_more')}</span>
+      </div>
+      <div class="svc-bar"></div>
+    </div>`).join('')
+}
+
+/* ── MODAL ── */
+function openModal(i) {
+  const s = SERVICES[i]
+  document.getElementById('modalImg').src = s.img
+  document.getElementById('modalIconBox').innerHTML = ICONS[s.iconKey]
+  document.getElementById('modalTags').textContent = (lang==='es'?s.tags_es:s.tags_eu).join(' · ')
+  document.getElementById('modalTitle').textContent = lang==='es'?s.title_es:s.title_eu
+  document.getElementById('modalDesc').textContent = lang==='es'?s.detail_es:s.detail_eu
+  document.getElementById('modalBullets').innerHTML = (lang==='es'?s.bullets_es:s.bullets_eu).map(b=>`<li><span class="bullet-dot"></span>${b}</li>`).join('')
+  document.querySelector('[data-i18n="svc_modal_cta"]').textContent = t('svc_modal_cta')
+  document.getElementById('modal').classList.add('open')
+  document.body.style.overflow = 'hidden'
+}
+
+function closeModal(e) {
+  if(e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open')
+    document.body.style.overflow = ''
+  }
+}
+
+function closeModalGoContact() {
+  document.getElementById('modal').classList.remove('open')
+  document.body.style.overflow = ''
+  setTimeout(()=>scrollTo('contacto'), 200)
+}
+
+/* ── CATALOG ── */
+function renderCatalog() {
+  const cats = t('cat_cats')
+  const filtersEl = document.getElementById('catFilters')
+  filtersEl.innerHTML = cats.map((c,i)=>`<button class="filter-btn${activeCat===i?' active':''}" onclick="setCat(${i})">${c}</button>`).join('')
+  renderProducts()
+}
+
+function setCat(i) { activeCat = i; renderCatalog() }
+
+function renderProducts() {
+  const cats = t('cat_cats')
+  const filtered = activeCat === 0 ? PRODUCTS : PRODUCTS.filter(p => (lang==='es'?p.cat_es:p.cat_eu) === cats[activeCat])
+  document.getElementById('catGrid').innerHTML = filtered.map(p => {
+    const name = lang==='es'?p.name_es:p.name_eu
+    const desc = lang==='es'?p.desc_es:p.desc_eu
+    const cat  = lang==='es'?p.cat_es:p.cat_eu
+    const badge= lang==='es'?p.badge_es:p.badge_eu
+    return `<div class="prod-card">
+      <div class="prod-img">
+        <img src="${p.img}" alt="${name}" onerror="this.src='https://images.unsplash.com/photo-1581092786450-7d1b2a4fad0a?w=400&q=80'" />
+        ${badge?`<span class="prod-badge">${badge}</span>`:''}
+        <span class="prod-cat">${cat}</span>
+      </div>
+      <div class="prod-info">
+        <h3 class="prod-name">${name}</h3>
+        <p class="prod-desc">${desc}</p>
+        <button class="prod-btn" onclick="scrollTo('contacto')">${t('cat_btn')}</button>
+      </div>
+    </div>`
+  }).join('')
+}
+
+/* ── REASONS ── */
+function renderReasons() {
+  document.getElementById('reasonsList').innerHTML = REASONS[lang].map(r=>`
+    <div class="reason">
+      <span class="reason-num">${r.num}</span>
+      <div><div class="reason-title">${r.title}</div><div class="reason-desc">${r.desc}</div></div>
+    </div>`).join('')
+}
+
+/* ── FOOTER ── */
+function renderFooter() {
+  document.getElementById('footerServices').innerHTML = t('services_list').map(s=>`<li>${s}</li>`).join('')
+  const ids = ['servicios','catalogo','nosotros','ubicacion','contacto']
+  document.getElementById('footerNav').innerHTML = t('nav_list').map((l,i)=>`<li><a onclick="scrollTo('${ids[i]}')">${l}</a></li>`).join('')
+}
+
+/* ── FORM ── */
+function updateServiceSelect() {
+  const sel = document.getElementById('serviceSelect')
+  if(!sel) return
+  sel.innerHTML = `<option value="">${t('service_select')}</option>` + t('service_opts').map(o=>`<option>${o}</option>`).join('')
+}
+updateServiceSelect()
+
+function initForm() {
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault()
+    document.getElementById('formWrap').innerHTML = `
+      <div class="form-success">
+        <div class="success-icon-box"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></div>
+        <h3>${t('con_success')}</h3>
+        <p>${t('con_success_desc')}</p>
+        <button class="btn-main" onclick="resetForm()">${t('con_success_btn')}</button>
+      </div>`
+  })
+}
+
+function resetForm() {
+  document.getElementById('formWrap').innerHTML = `
+    <form class="con-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group"><label>${t('con_name')}</label><input type="text" name="nombre" required placeholder="${t('con_ph_name')}" /></div>
+        <div class="form-group"><label>${t('con_phone')}</label><input type="tel" name="tel" required placeholder="600 000 000" /></div>
+      </div>
+      <div class="form-group"><label>${t('con_email')}</label><input type="email" name="email" placeholder="${t('con_ph_email')}" /></div>
+      <div class="form-group"><label>${t('con_service')}</label><select name="servicio" id="serviceSelect"></select></div>
+      <div class="form-group"><label>${t('con_msg')}</label><textarea name="msg" rows="5" required placeholder="${t('con_ph_msg')}"></textarea></div>
+      <button type="submit" class="btn-main form-submit">${t('con_submit')}</button>
+    </form>`
+  updateServiceSelect()
+  initForm()
+}
+
+/* ── COUNTERS ── */
+function initCounters() {
+  const targets = [25, 500, 100], suffixes = ['+','+','%']
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        targets.forEach((target, i) => {
+          const el = document.getElementById('cnt'+i)
+          let cur = 0
+          const inc = target/80
+          const timer = setInterval(()=>{ cur+=inc; if(cur>=target){cur=target;clearInterval(timer)} el.textContent=Math.floor(cur)+suffixes[i] }, 20)
+        })
+        observer.disconnect()
+      }
+    })
+  }, {threshold:.3})
+  observer.observe(document.getElementById('cnt0'))
+}
+
+/* ── SCROLL ANIMATIONS ── */
+function initScroll() {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') }), {threshold:.1})
+  document.querySelectorAll('.fade-up,.fade-left').forEach(el => obs.observe(el))
+}
+</script>
+</body>
+</html>
